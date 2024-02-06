@@ -30,6 +30,7 @@ const formSchema = z.object({
 
 function SignUp() {
     const router = useRouter();
+    const [error, setError] = useState('');
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -42,8 +43,9 @@ function SignUp() {
         try {
             const response = await axios.post("/api/users/signup", values)
             router.push("/login");
-        } catch (error) {
+        } catch (error:any) {
             console.log("Registration failed", error);
+            setError(error.response.data.error);
         }
     }
 
@@ -96,6 +98,7 @@ function SignUp() {
                         </FormItem>
                     )}
                     />
+                    <center className="text-red-500">{error}</center>
                     <center><Button type="submit">Register</Button></center>
                 </form>
             </Form>

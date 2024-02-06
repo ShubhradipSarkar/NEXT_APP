@@ -27,6 +27,7 @@ const formSchema = z.object({
 
 function LoginPage() {
     const router = useRouter();
+    const [error, setError] = useState('');
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -39,9 +40,12 @@ function LoginPage() {
             
             const response = await axios.post("/api/users/login", values)
             
+            // Handle successful login
             router.push("/Chai");
-        } catch (error) {
-            console.log("Login failed", error);
+            
+        } catch (error:any) {
+            console.log("Login failed", error.response.data.error);
+            setError(error.response.data.error);
         }
     }
 
@@ -57,7 +61,7 @@ function LoginPage() {
                         <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                            <Input placeholder="email" {...field} />
+                            <Input placeholder="email" {...field}/>
                         </FormControl>
                         
                         <FormMessage />
@@ -78,6 +82,7 @@ function LoginPage() {
                         </FormItem>
                     )}
                     />
+                    <center className="text-red-500">{error}</center>
                     <center><Button type="submit">Login</Button></center>
                 </form>
             </Form>
