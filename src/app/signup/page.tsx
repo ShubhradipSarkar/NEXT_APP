@@ -99,7 +99,7 @@ function SignUp() {
                     <center><Button type="submit">Register</Button></center>
                 </form>
             </Form>
-            <Link href="/login" className="m-3 text-cyan-500">Login if already registered</Link>
+            <Link href="/login" className="m-3 text-cyan-500">Login if you are already registered</Link>
         </div>
     )
 }
