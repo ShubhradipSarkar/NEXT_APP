@@ -36,9 +36,9 @@ function LoginPage() {
     })
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            console.log(values);
+            
             const response = await axios.post("/api/users/login", values)
-            console.log(response);
+            
             router.push("/Chai");
         } catch (error) {
             console.log("Login failed", error);
