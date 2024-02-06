@@ -81,7 +81,7 @@ function LoginPage() {
                     <center><Button type="submit">Login</Button></center>
                 </form>
             </Form>
-            <Link href="/signup" className="m-3 text-cyan-500">Do not have an Account? Register here</Link>
+            <Link href="/signup" className="m-3 text-cyan-500">Do not have an Account Register here</Link>
         </div>
     )
 }
