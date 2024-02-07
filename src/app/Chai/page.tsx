@@ -18,7 +18,8 @@ function ChaiPage() {
     }
     const logout = async() => {
         try {
-            await axios.get('/api/users/logout');
+            const response = await axios.get('/api/users/logout');
+            console.log(response);
             router.push('/login')
         } catch (error: any) {
             console.log(error.message)
