@@ -19,7 +19,7 @@ export default function Navbar_() {
     
 
     return (
-        <div className="fixed top-0 w-full">
+        <div className=" w-full">
             <div className="bg-white ">
                 <div className="alltop">
                     <div className="top">
@@ -76,21 +76,13 @@ export default function Navbar_() {
             <nav className="bg-white w-full md:border-0 z-0">
                 <div className="items-center px-4 max-w-screen-xl mx-auto  md:px-8">
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                        
                         <div className="xl:hidden">
-                            <button
-                                className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
-                                onClick={() => setState(!state)}
-                            >
-                                <Menu />
+                            <button className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border" onClick={() => setState(!state)}>
+                                <Menu/>
                             </button>
                         </div>
                     </div>
-                    <div
-                        className={`flex-1 justify-self-center pb-3 xl:block md:pb-0 md:mt-0 ${
-                            state ? "block" : "hidden"
-                        }`}
-                    >
+                    <div className={`flex-1 justify-self-center pb-3 xl:block md:pb-0 md:mt-0 ${state ? "block" : "hidden"}`}>
                         <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                             
                             <div className="text-gray-600 flex flex-col xl:flex-row hover:text-indigo-600 items-center">
