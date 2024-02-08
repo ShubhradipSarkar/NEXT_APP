@@ -6,6 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import {z} from "zod"
 import { Button } from "@/components/ui/button"
+import Image from 'next/image';
 import {
     Form,
     FormControl,
@@ -51,7 +52,7 @@ function contact() {
                     <Input placeholder='Mobile No' className='w-80 m-2'/>
                     <Input placeholder='Subject' className='w-80 m-2'/>
                     <Input placeholder='Message' className='w-80 m-2 py-8'/>
-                <center><Button className='p-2'><div className='text-semibold'>Send Message</div></Button></center>
+                <center><Button variant="default" className='p-2'><div className='text-semibold'>Send Message</div><div><Image src="/Mouse_Pointer_001.png" alt="lol" width={40} height={40}/></div></Button></center>
                 
         </div>
                 </div>
