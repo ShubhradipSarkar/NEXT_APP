@@ -47,8 +47,11 @@ function contact() {
                 <div className=' p-3 m-3  rounded-md box-border w-full xl:w-2/5'>
                 <div className="flex flex-col items-center justify-center max-h-screen py-5">
                 <center><h1 className="m-3 text-4xl">Message Us</h1></center>
-                    
-                <center><Button type="submit">Send Message</Button></center>
+                    <Input placeholder='Name' className='w-80 m-2'/>
+                    <Input placeholder='Mobile No' className='w-80 m-2'/>
+                    <Input placeholder='Subject' className='w-80 m-2'/>
+                    <Input placeholder='Message' className='w-80 m-2 py-8'/>
+                <center><Button className='p-2'><div className='text-semibold'>Send Message</div></Button></center>
                 
         </div>
                 </div>
