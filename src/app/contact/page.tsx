@@ -29,7 +29,7 @@ const formSchema = z.object({
 
 function contact() {
     //const router = useRouter();
-    const [error, setError] = useState('');
+    //const [error, setError] = useState('');
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -118,7 +118,7 @@ function contact() {
                         </FormItem>
                     )}
                     />
-                    <center className="text-red-500">{error}</center>
+                    
                     <center><Button type="submit">Send Message</Button></center>
                 </form>
             </Form>
