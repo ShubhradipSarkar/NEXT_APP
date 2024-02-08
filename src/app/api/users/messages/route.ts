@@ -1,18 +1,35 @@
-import { NextResponse } from "next/server";
+import { connect } from "@/DBConfig/DBConfig";
+import Messages from "@/models/MessagesModel";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+
+connect()
+
+export async function POST(request: NextRequest){
     try {
-        const response = NextResponse.json({
-            message: "Logged out",
+        const reqBody = await request.json()
+        const {name, mobile, subject, message} = reqBody
+
+        
+
+       
+
+        // Save User
+        const NewMessage = new Messages({
+            name, 
+            mobile,
+            subject,
+            message,
+        })
+        await NewMessage.save();
+
+        return NextResponse.json({
+            message: "Message Sent",
             success: true,
         })
-        response.cookies.delete("token");
 
-        return response;
-        
     } catch (error: any) {
-        return NextResponse.json({error: error.message},
-            {status: 500});
+        return NextResponse.json({error: error.message},{status: 500})
     }
-    
 }
+

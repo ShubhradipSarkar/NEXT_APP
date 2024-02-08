@@ -4,34 +4,38 @@ import Navbar_ from '@/components/Navbar'
 import Footer_ from '@/components/Footer'
 import axios from "axios";
 import { useState } from "react";
-import {z} from "zod"
+
 import { Button } from "@/components/ui/button"
 import Image from 'next/image';
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
 
-const formSchema = z.object({
-    name: z.string().min(2).max(50),
-    contact: z.string().min(2).max(50),
-    subject: z.string().min(2).max(50),
-    message: z.string().min(2).max(50),
-})
+
+import { Input } from "@/components/ui/input"
 
 
 function contact() {
-    //const router = useRouter();
-    //const [error, setError] = useState('');
+    const [name, setName] = useState("");
+    const [mobile, setmobile] = useState("");
+    const [subject, setsubject] = useState("");
+    const [message, setmessage] = useState("");
     
+    const SubMitMessage = async() => {
+        try {
+            const MsgSent = await axios.post("/api/users/messages",{
+                name: name,
+                mobile: mobile,
+                subject: subject,
+                message: message
+            });
+            setName("");
+            setmobile("");
+            setsubject("");
+            setmessage("");
+
+        } catch (error) {
+            
+        }
+    }
+
     return (
         <div>
             <Navbar_/>
@@ -48,11 +52,11 @@ function contact() {
                 <div className=' p-3 m-3  rounded-md box-border w-full xl:w-2/5'>
                 <div className="flex flex-col items-center justify-center max-h-screen py-5">
                 <center><h1 className="m-3 text-4xl">Message Us</h1></center>
-                    <Input placeholder='Name' className='w-80 m-2'/>
-                    <Input placeholder='Mobile No' className='w-80 m-2'/>
-                    <Input placeholder='Subject' className='w-80 m-2'/>
-                    <Input placeholder='Message' className='w-80 m-2 py-8'/>
-                <center><Button variant="default" className='p-2'><div className='text-semibold'>Send Message</div><div><Image src="/Mouse_Pointer_001.png" alt="lol" width={40} height={40}/></div></Button></center>
+                    <Input placeholder='Name' className='w-80 m-2' value={name} onChange={(e)=>{setName(e.target.value)}}/>
+                    <Input placeholder='Mobile No' className='w-80 m-2' value={mobile} onChange={(e)=>{setmobile(e.target.value)}}/>
+                    <Input placeholder='Subject' className='w-80 m-2' value={subject} onChange={(e)=>{setsubject(e.target.value)}}/>
+                    <Input placeholder='Message' className='w-80 m-2 py-8' value={message} onChange={(e)=>{setmessage(e.target.value)}}/>
+                <center><Button variant="default" className='p-2' onClick={SubMitMessage}><div className='text-semibold'>Send Message</div><div><Image src="/Mouse_Pointer_001.png" alt="lol" width={40} height={40}/></div></Button></center>
                 
         </div>
                 </div>
