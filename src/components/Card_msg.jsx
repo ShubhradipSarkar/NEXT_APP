@@ -1,6 +1,5 @@
-import { BellIcon, CheckIcon } from "@radix-ui/react-icons"
+import * as React from "react"
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -10,28 +9,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Switch } from "@/components/ui/switch"
 
-
-
-type CardProps = React.ComponentProps<typeof Card>
-
-export default function Card_msg({ className, ...props }: CardProps) {
+export default function Card_msg(props) {
   return (
-    <Card className={cn("w-[380px]", className)} {...props}>
+    <Card className="w-auto p-5 m-5">
       <CardHeader>
         <CardTitle>{props.name}</CardTitle>
-        
+        <CardDescription>Contact: {props.mobile}</CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-4">
-        <p> Contact number: {props.mobile}</p>
-        <p className="text-blue-300"> Subject: {props.subject}</p>
+      <CardContent>
+        <p className="text-blue-400">Subject: {props.subject}</p>
         <p className="text-gray-400">{props.message}</p>
       </CardContent>
-      <CardFooter>
-        <Button className="w-full">
-          <CheckIcon className="mr-2 h-4 w-4" /> Delete
-        </Button>
+      <CardFooter className="flex justify-between">
+        
+        <Button className="w-auto">Delete</Button>
       </CardFooter>
     </Card>
   )
