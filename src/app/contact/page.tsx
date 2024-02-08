@@ -30,18 +30,7 @@ const formSchema = z.object({
 function contact() {
     //const router = useRouter();
     //const [error, setError] = useState('');
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            name: "",
-            contact: "",
-            subject: "",
-            message: "",
-        },
-    })
-    async function onSubmit(values: z.infer<typeof formSchema>) {
-        
-    }
+    
     return (
         <div>
             <Navbar_/>
@@ -57,72 +46,10 @@ function contact() {
                 
                 <div className=' p-3 m-3  rounded-md box-border w-full xl:w-2/5'>
                 <div className="flex flex-col items-center justify-center max-h-screen py-5">
-            <center><h1 className="m-3 text-4xl">Message Us</h1></center>
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <center><h1 className="m-3 text-4xl">Message Us</h1></center>
                     
-                    <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                        <FormItem>
-                       
-                        <FormControl>
-                            <Input placeholder="Name" {...field}/>
-                        </FormControl>
-                        
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                    />
-                    <FormField
-                    control={form.control}
-                    name="contact"
-                    render={({ field }) => (
-                        <FormItem>
-                        
-                        <FormControl>
-                            <Input placeholder="Contact Number" {...field}/>
-                        </FormControl>
-                        
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                    />
-                    
-                    <FormField
-                    control={form.control}
-                    name="subject"
-                    render={({ field }) => (
-                        <FormItem>
-                        
-                        <FormControl>
-                            <Input placeholder="Subject" {...field}/>
-                        </FormControl>
-                        
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                    />
-                    <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                        <FormItem>
-                        
-                        <FormControl>
-                            <Input placeholder="Message" {...field} />
-                        </FormControl>
-                        
-                        <FormMessage />
-                        </FormItem>
-                    )}
-                    />
-                    
-                    <center><Button type="submit">Send Message</Button></center>
-                </form>
-            </Form>
-            
+                <center><Button type="submit">Send Message</Button></center>
+                
         </div>
                 </div>
             </div>
