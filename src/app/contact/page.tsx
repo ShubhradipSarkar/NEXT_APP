@@ -4,11 +4,12 @@ import Navbar_ from '@/components/Navbar'
 import Footer_ from '@/components/Footer'
 import axios from "axios";
 import { useState } from "react";
+// import { toast } from 'react-hot-toast';
 
 import { Button } from "@/components/ui/button"
 import Image from 'next/image';
 
-
+import { useToast } from "@/components/ui/use-toast"
 import { Input } from "@/components/ui/input"
 
 
@@ -17,7 +18,8 @@ function contact() {
     const [mobile, setMobile] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
-    
+    const { toast } = useToast()
+
     const SubMitMessage = async() => {
         try {
             const MsgSent = await axios.post("/api/users/messages",{
@@ -26,13 +28,23 @@ function contact() {
                 subject: subject,
                 message: message
             });
+            toast({
+                title: "Message was sent",
+                description: "Your messages motivate us to work harder and better",
+            })
+            
             setName("");
             setMobile("");
             setSubject("");
             setMessage("");
 
         } catch (error) {
-            
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                description: "There was a problem and your message couldn't be sent.",
+                
+            })
         }
     }
 

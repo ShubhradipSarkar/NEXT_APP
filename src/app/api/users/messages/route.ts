@@ -10,11 +10,7 @@ export async function POST(request: NextRequest){
         const reqBody = await request.json()
         const {name, mobile, subject, message} = reqBody
 
-        
-
-       
-
-        // Save User
+        // Save Message
         const NewMessage = new Messages({
             name, 
             mobile,

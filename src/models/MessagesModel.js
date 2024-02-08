@@ -7,7 +7,7 @@ const MessagesSchema = new mongoose.Schema({
     },
     mobile: {
         type: String,
-        unique: true,
+        
     },
     subject: {
         type: String,
