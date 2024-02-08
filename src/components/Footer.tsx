@@ -29,7 +29,7 @@ export default function Footer_() {
             </p>
             <br />
             <p className=" text-xs text-center text-justify text-gray-400 ">
-            Developer's contact: shubhradipsarkar@gmail, contact number: +91-6294537321, NIT Durgapur '24, 
+            Contact the developer at: shubhradipsarkar@gmail, contact number: +91-6294537321, NIT Durgapur 2024 Batch, 
             </p>
             
             <div className="flex justify-center mt-4 space-x-4 lg:mt-2">

@@ -67,7 +67,7 @@ export default function Navbar_() {
                         className="bg-white m-0 p-2 font-bold text-lime-800"
                             
                         >
-                            বাংলার জনবিজ্ঞান আন্দোলনে একটি পথিকৃত সংগঠন | A PIONEER PEOPLE'S SCIENCE ORGANIZATION OF BENGAL
+                            বাংলার জনবিজ্ঞান আন্দোলনে একটি পথিকৃত সংগঠন | A PIONEER SCIENCE ORGANIZATION FOR PEOPLE OF BENGAL
                         </div>{" "}
                     </center>
                 </div>
