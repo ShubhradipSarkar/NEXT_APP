@@ -14,9 +14,9 @@ import { Input } from "@/components/ui/input"
 
 function contact() {
     const [name, setName] = useState("");
-    const [mobile, setmobile] = useState("");
-    const [subject, setsubject] = useState("");
-    const [message, setmessage] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [subject, setSubject] = useState("");
+    const [message, setMessage] = useState("");
     
     const SubMitMessage = async() => {
         try {
@@ -27,9 +27,9 @@ function contact() {
                 message: message
             });
             setName("");
-            setmobile("");
-            setsubject("");
-            setmessage("");
+            setMobile("");
+            setSubject("");
+            setMessage("");
 
         } catch (error) {
             
@@ -53,9 +53,9 @@ function contact() {
                 <div className="flex flex-col items-center justify-center max-h-screen py-5">
                 <center><h1 className="m-3 text-4xl">Message Us</h1></center>
                     <Input placeholder='Name' className='w-80 m-2' value={name} onChange={(e)=>{setName(e.target.value)}}/>
-                    <Input placeholder='Mobile No' className='w-80 m-2' value={mobile} onChange={(e)=>{setmobile(e.target.value)}}/>
-                    <Input placeholder='Subject' className='w-80 m-2' value={subject} onChange={(e)=>{setsubject(e.target.value)}}/>
-                    <Input placeholder='Message' className='w-80 m-2 py-8' value={message} onChange={(e)=>{setmessage(e.target.value)}}/>
+                    <Input placeholder='Mobile No' className='w-80 m-2' value={mobile} onChange={(e)=>{setMobile(e.target.value)}}/>
+                    <Input placeholder='Subject' className='w-80 m-2' value={subject} onChange={(e)=>{setSubject(e.target.value)}}/>
+                    <Input placeholder='Message' className='w-80 m-2 py-8' value={message} onChange={(e)=>{setMessage(e.target.value)}}/>
                 <center><Button variant="default" className='p-2' onClick={SubMitMessage}><div className='text-semibold'>Send Message</div><div><Image src="/Mouse_Pointer_001.png" alt="lol" width={40} height={40}/></div></Button></center>
                 
         </div>
