@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    isMember: {
+        type: Boolean,
+        default: false,
+    },
     forgotPasswordToken: {
         type: String,
     },

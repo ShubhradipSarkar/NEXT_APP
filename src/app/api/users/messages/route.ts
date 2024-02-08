@@ -29,3 +29,16 @@ export async function POST(request: NextRequest){
     }
 }
 
+export async function GET(request: NextRequest){
+    try {
+        const AllMessage = await Messages.find({});
+        const AllMessages=AllMessage.reverse();
+        return NextResponse.json({
+            AllMessages
+        })
+
+    } catch (error: any) {
+        return NextResponse.json({error: error.message},{status: 500})
+    }
+}
+

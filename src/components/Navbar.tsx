@@ -11,11 +11,25 @@ import CateGoriesButton from "@/components/NavbarButtons/CateGoriesButton"
 import HistoryMovButton from "@/components/NavbarButtons/HistoryMovButton"
 import PresentMovButton from "@/components/NavbarButtons/PresentMovButton"
 import ContactButton from "@/components/NavbarButtons/ContactButton"
-
+import { useEffect } from "react";
+import axios from "axios"
+import MessageButton from "@/components/NavbarButtons/MessageButton"
 
 export default function Navbar_() {
     const [state, setState] = React.useState(false);
+    const [ismember, setIsmember] = React.useState(false);
 
+    useEffect(() => {
+        const Membeship = async () => {
+            const users = await axios.get("/api/users/me");
+            
+            setIsmember(users.data.data.isMember);
+          };
+        
+          Membeship();
+          
+        
+    }, []);
     
 
     return (
@@ -92,6 +106,7 @@ export default function Navbar_() {
                                 <HistoryMovButton/>
                                 <PhotoButton/>
                                 <ContactButton/>
+                                {ismember && <MessageButton/>}
                             </div>
                             
                         </ul>
