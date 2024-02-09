@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
             email: user.email
         }
         const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY!,
-            {expiresIn: "1h"});
+            {expiresIn: "72h"});
 
         // Response and cookie setting
         const response = NextResponse.json({
