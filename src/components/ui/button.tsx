@@ -24,7 +24,7 @@ const buttonVariants = cva(
         admin: " bg-emerald-700 text-accent-foreground shadow-sm hover:bg-emerald-900 hover:text-accent-foreground",
       },
       size: {
-        default: "h-9 px-4 py-2",
+        default: "h-9 px-4 py-2 ml-4",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-14 px-8 xl:px-1 rounded-md my-1 w-80 xl:w-full",
         icon: "h-9 w-9",
