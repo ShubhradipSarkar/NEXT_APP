@@ -31,8 +31,8 @@ export default function Card_({userId, username, email, admin}) {
         const findMe = async() => {
             try {
                 const whoIsMe = await axios.get("/api/users/me");
-                //console.log(whoIsMe);
-                setisadmin(whoIsMe.data.data.isAdmin);
+                
+                // setisadmin(whoIsMe.data.data.isAdmin);
                 
             } catch (error) {
                 
@@ -84,7 +84,7 @@ export default function Card_({userId, username, email, admin}) {
         <center>
         <CardFooter className="flex justify-between">
             <center><Button variant="outline" size="default">View </Button>
-            {isadmin && !admin && <Button variant="default" size="default" onClick={makeAdmin}>Appoint Admin </Button>}
+            {/* {isadmin && !admin && <Button variant="default" size="default" onClick={makeAdmin}>Appoint Admin </Button>} */}
             
             </center>
             
