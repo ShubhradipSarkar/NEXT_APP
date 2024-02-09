@@ -83,7 +83,7 @@ export default function Card_({userId, username, email, admin}) {
         
         <center>
         <CardFooter className="flex justify-between">
-            <center><Button variant="outline" size="default">View</Button>
+            <center><Button variant="outline" size="default">View </Button>
             {isadmin && !admin && <Button variant="default" size="default" onClick={makeAdmin}>Make Admin </Button>}
             
             </center>
