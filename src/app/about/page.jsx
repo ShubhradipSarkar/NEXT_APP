@@ -17,10 +17,10 @@ function About() {
         const getData = async() => {
             try {
                 const allData = await axios.get("/api/users/members");
-                
+                console.log(allData);
                 setData(allData.data.member);
             } catch (error) {
-                
+                console.log(error);
             } finally {
                 SetIsloading(false);
             }
