@@ -14,16 +14,17 @@ import ContactButton from "@/components/NavbarButtons/ContactButton"
 import { useEffect } from "react";
 import axios from "axios"
 import MessageButton from "@/components/NavbarButtons/MessageButton"
-
+import AdminOnlyButton from "@/components/NavbarButtons/AdminOnlyButton"
 export default function Navbar_() {
     const [state, setState] = React.useState(false);
     const [ismember, setIsmember] = React.useState(false);
-
+    const [isadmin, setisadmin] = React.useState(false);
     useEffect(() => {
         const Membeship = async () => {
             const users = await axios.get("/api/users/me");
             
             setIsmember(users.data.data.isMember);
+            setisadmin(users.data.data.isAdmin);
           };
         
           Membeship();
@@ -100,6 +101,7 @@ export default function Navbar_() {
                         <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                             
                             <div className="text-gray-600 flex flex-col xl:flex-row hover:text-indigo-600 items-center">
+                                {isadmin && <AdminOnlyButton/>}
                                 <AboutUsButton />
                                 <CateGoriesButton/>
                                 <PresentMovButton/>

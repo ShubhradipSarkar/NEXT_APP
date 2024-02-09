@@ -29,7 +29,7 @@ function ChaiPage() {
     return (
         <main className="h-full flex justify-center items-center flex-col">
             <Navbar_/>
-            <div className="my-52 pt-52">
+            <div className="">
                 <div>ChaiPage </div>
                 <h1>{userId}</h1>
                 <button className="px-6 py-2 bg-blue-500 rounded
