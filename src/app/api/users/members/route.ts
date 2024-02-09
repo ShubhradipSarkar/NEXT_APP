@@ -1,10 +1,9 @@
-
 import { connect } from "@/DBConfig/DBConfig";
-
-import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/userModel";
+import { NextRequest, NextResponse } from "next/server";
 
-connect();
+
+connect()
 
 export async function GET(request: NextRequest) {
     try {
@@ -14,6 +13,6 @@ export async function GET(request: NextRequest) {
             member
         })
     } catch (error: any) {
-        return NextResponse.json({error: error.message}, {status: 400})
+        return NextResponse.json({error: error.message}, {status: 500})
     }
 }
