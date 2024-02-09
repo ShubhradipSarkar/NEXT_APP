@@ -38,3 +38,26 @@ export async function POST(request: NextRequest){
     }
 }
 
+export async function PUT(request: NextRequest) {
+    try {
+        const reqBody = await request.json();
+        const { _id, isAdmin } = reqBody;
+    
+        // Check if user exists
+        const existingUser = await User.findOne({ _id: _id });
+        if (!existingUser) {
+            return NextResponse.json({ error: "User not found" }, { status: 404 });
+        }
+    
+        // Update isAdmin field
+        existingUser.isAdmin = isAdmin;
+        await existingUser.save();
+    
+        return NextResponse.json({
+            message: "User updated",
+            success: true,
+        });
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    }
