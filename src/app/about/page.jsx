@@ -40,7 +40,7 @@ function About() {
                         ) : (
                             <div className="flex flex-row flex-wrap">
                             {Data.map((data)=>(
-                                <Card_ userId={data._id} username={data.username} email={data.email} admin={data.isAdmin} key={data.email} className='m-3 w-auto'/>
+                                <Card_ userId={data._id } username={data.username} email={data.email} admin={data.isAdmin} key={data.email} className='m-3 w-auto'/>
                             ))}
                             
                         </div>
