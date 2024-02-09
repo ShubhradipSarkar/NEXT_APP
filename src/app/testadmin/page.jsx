@@ -7,7 +7,7 @@ import React, { useEffect } from 'react'
 export default function Test() {
     useEffect(() => {
         const TT = async() => {
-            const k=await axios.get("/api/users/messages");
+            const k=await axios.get("/api/users/members");
             console.log(k);
         }
         TT();
