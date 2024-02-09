@@ -49,6 +49,7 @@ function contact() {
     }
 
     return (
+        
         <div>
             <Navbar_/>
             
@@ -75,6 +76,7 @@ function contact() {
             </div>
             <Footer_/>
         </div>
+        
     )
 }
 

@@ -5,6 +5,8 @@ import Footer_ from '@/components/Footer'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Card_msg from '@/components/Card_msg'
+import {NextUIProvider} from "@nextui-org/react";
+import {Spinner} from "@nextui-org/react";
 
 function messagesForMembers() {
     const [Messages, setMessages] = useState([]);
@@ -25,13 +27,14 @@ function messagesForMembers() {
         
     }, []);
   return (
+    <NextUIProvider>
     <div>
         <Navbar_/>
         <div>
         {loading ? (
-          <center>
-            <p>Loading messages...</p>
-          </center>
+          
+            <center><div className='p-8 m-8'><Spinner label="Loading..." color="success" size='lg' className='m-8 p-8'/></div></center> 
+          
            
             ) : (
             <ul>
@@ -47,6 +50,7 @@ function messagesForMembers() {
         </div>
         <Footer_/>
     </div>
+    </NextUIProvider>
   )
 }
 
