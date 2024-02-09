@@ -8,7 +8,7 @@ connect();
 
 export async function GET(request: NextRequest) {
     try {
-        const member = await User.find({isMember: true});
+        const member = await User.find({});
 
         return NextResponse.json({
             member
