@@ -28,6 +28,8 @@ const formSchema = z.object({
 function LoginPage() {
     const router = useRouter();
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -37,7 +39,7 @@ function LoginPage() {
     })
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            
+            setLoading(true);
             const response = await axios.post("/api/users/login", values)
             
             // Handle successful login
@@ -46,12 +48,15 @@ function LoginPage() {
         } catch (error:any) {
             console.log("Login failed", error.response.data.error);
             setError(error.response.data.error);
+        } finally {
+            setLoading(false);
         }
     }
 
     return (
         <div className="flex flex-col items-center justify-center max-h-screen py-5">
-            <center><h1 className="m-3">Login</h1></center>
+            {loading?(<center><h1 className="m-3">Please Wait...</h1></center>):(<center><h1 className="m-3">Login</h1></center>)}
+            
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormField
@@ -59,7 +64,8 @@ function LoginPage() {
                     name="email"
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>Email</FormLabel>
+                            
+                            <FormLabel>Email</FormLabel>
                         <FormControl>
                             <Input placeholder="email" {...field}/>
                         </FormControl>

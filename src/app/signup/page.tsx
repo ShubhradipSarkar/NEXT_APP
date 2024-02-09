@@ -31,6 +31,8 @@ const formSchema = z.object({
 function SignUp() {
     const router = useRouter();
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -41,17 +43,20 @@ function SignUp() {
     })
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
+            setLoading(true);
             const response = await axios.post("/api/users/signup", values)
             router.push("/login");
         } catch (error:any) {
             console.log("Registration failed", error);
             setError(error.response.data.error);
+        } finally {
+            setLoading(false);
         }
     }
 
     return (
         <div className="flex flex-col items-center justify-center max-h-screen py-5">
-            <center><h1 className="m-3">Register User</h1></center>
+            {loading?(<center><h1 className="m-3">Please wait, we are registering you...</h1></center>):(<center><h1 className="m-3">Register User</h1></center>)}
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormField
