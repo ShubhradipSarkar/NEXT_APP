@@ -14,18 +14,26 @@ function About() {
     const [Data, setData] = useState([]);
     const [isloading, SetIsloading] = useState(true);
     useEffect(() => {
-        const getData = async() => {
-            try {
-                const allData = await axios.get("/api/users/members");
-                console.log(allData);
-                setData(allData.data.member);
-            } catch (error) {
-                console.log(error);
-            } finally {
-                SetIsloading(false);
-            }
-        }
-        getData();
+        // const getData = async() => {
+        //     try {
+        //         const allData = await axios.get("/api/users/members");
+        //         console.log(allData);
+        //         setData(allData.data.member);
+        //     } catch (error) {
+        //         console.log(error);
+        //     } finally {
+        //         SetIsloading(false);
+        //     }
+        // }
+        // getData();
+
+        fetch('/api/users/members')
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            setData(data)
+            SetIsloading(false);
+        })
     }, []);
     return (
         <NextUIProvider>
@@ -39,7 +47,7 @@ function About() {
                     
                         ) : (
                             <div className="flex flex-row flex-wrap">
-                            {Data.map((data)=>(
+                            {Data.member.map((data)=>(
                                 <Card_ userId={data._id } username={data.name} email={data.mobile} admin={data.isAdmin} key={data.email} className='m-3 w-auto'/>
                             ))}
                             
