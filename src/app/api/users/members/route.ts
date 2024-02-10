@@ -1,5 +1,5 @@
 import { connect } from "@/DBConfig/DBConfig";
-import User from "@/models/userModel";
+import Member from "@/models/MemberModel";
 import { NextRequest, NextResponse } from "next/server";
 
 
@@ -7,7 +7,7 @@ connect()
 
 export async function GET(request: NextRequest) {
     try {
-        const member = await User.find({isMember: true});
+        const member = await Member.find({});
         console.log(member);
         return NextResponse.json({
             member
