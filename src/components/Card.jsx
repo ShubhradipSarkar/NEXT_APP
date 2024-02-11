@@ -63,6 +63,28 @@ export default function Card_({userId, username, email, admin}) {
             })
         }
     }
+    const removeAdmin = async() => {
+        
+        try {
+            const updateAdmin = await axios.put("/api/users/signup",{
+                _id:userId,
+                isAdmin: false,
+            })
+            toast({
+                title: `${username} is removed from Admin`,
+                description: "Reload page once...",
+            })
+            
+        } catch (error) {
+            console.log("couldn't remove admin", error);
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Some issue came...",
+                description: `There was a problem and ${username} couldn't be removed from admin.`,
+                
+            })
+        }
+    }
     return (
         <Card className="m-3 md:w-[200px]">
             {admin ? (<p className="p-1 italic text-bold">Admin</p>):(<p className="p-4 text-yellow-500 text-bold">   </p>)}
@@ -86,7 +108,7 @@ export default function Card_({userId, username, email, admin}) {
         <CardFooter className="flex justify-between">
             <center><Button variant="outline" size="default">View </Button>
             {isadmin && !admin && <Button variant="default" size="default" onClick={makeAdmin}>Appoint Admin </Button>}
-            
+            {isadmin && admin && <Button variant="default" size="default" onClick={removeAdmin}>Remove Admin </Button>}
             </center>
             
         </CardFooter>
