@@ -1,5 +1,5 @@
 import { connect } from "@/DBConfig/DBConfig";
-import Member from "@/models/MemberModel";
+import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 
 
@@ -11,7 +11,7 @@ export async function POST(request: NextRequest){
         const {name, mobile} = reqBody
 
         // Save Message
-        const NewMessage = new Member({
+        const NewMessage = new User({
             name, 
             mobile,
             
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest){
 
 export async function GET(request: NextRequest) {
     try {
-        const member = await Member.find({});
+        const member = await User.find({isMember: true});
         console.log(member);
         return NextResponse.json({
             member
