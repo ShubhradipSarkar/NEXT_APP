@@ -60,6 +60,10 @@ const userSchema = new mongoose.Schema({
     },
     verifyTokenExpiry: {
         type: String,
+    },
+    profile_picture:{
+        type: String,
+        default: '/image_profile.png'
     }
 
 })
