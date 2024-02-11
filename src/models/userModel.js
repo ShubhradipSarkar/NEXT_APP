@@ -26,6 +26,29 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    guardian: {
+        type: String,
+        
+    },
+    dob: {
+        type: String,
+        
+    },
+    edu: {
+        type: String,
+    },
+    profession:{
+        type: String,
+    },
+    bGR: {
+        type: String,
+    },
+    interest: {
+        type: String,
+    },
+    mob: {
+        type: String,
+    },
     forgotPasswordToken: {
         type: String,
     },

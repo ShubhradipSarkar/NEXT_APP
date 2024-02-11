@@ -16,24 +16,36 @@ import axios from "axios"
 import MessageButton from "@/components/NavbarButtons/MessageButton"
 import AdminOnlyButton from "@/components/NavbarButtons/AdminOnlyButton"
 import JoinClubButton from "@/components/NavbarButtons/JoinClubButton"
+import { useRouter } from "next/navigation";
 
 export default function Navbar_() {
     const [state, setState] = React.useState(false);
     const [ismember, setIsmember] = React.useState(false);
     const [isadmin, setisadmin] = React.useState(false);
+    const router = useRouter();
+
     useEffect(() => {
         const Membeship = async () => {
             const users = await axios.get("/api/users/me");
             
             setIsmember(users.data.data.isMember);
             setisadmin(users.data.data.isAdmin);
-          };
+        };
         
-          Membeship();
+        Membeship();
           
         
     }, []);
     
+    const logOut = async() => {
+        try {
+            const response = await axios.get('/api/users/logout');
+            console.log(response);
+            router.push("/login")
+        } catch (error: any) {
+            console.log(error.message)
+        }
+    }
 
     return (
         <div className=" w-full">
@@ -112,6 +124,7 @@ export default function Navbar_() {
                                 <PhotoButton/>
                                 <ContactButton/>
                                 {ismember && <MessageButton/>}
+                                <Button variant="admin" onClick={logOut}>Logout</Button>
                             </div>
                             
                         </ul>

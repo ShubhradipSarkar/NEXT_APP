@@ -19,8 +19,32 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { BellIcon, CheckIcon } from "@radix-ui/react-icons"
+import axios from "axios"
 
 export default function CardWithForm({name, email, mob, edu, bGR, guardian, profession, interest, dob}) {
+    
+    const makeMember = async() => {
+        try {
+            const updateMember = await axios.put("/api/users/members",{
+                email: email,
+                name: name,
+                mob:mob,
+                profession:profession,
+                dob:dob,
+                guardian:guardian,
+                interest:interest,
+                bGR : bGR,
+                edu:edu,
+            })
+
+            const deleteApplication = await axios.put("/api/users/applications",{
+                email: email,
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
     return (
         <Card className="w-full m-8 bg-sky-500">
         <CardHeader>
@@ -63,7 +87,7 @@ export default function CardWithForm({name, email, mob, edu, bGR, guardian, prof
         
         <CardFooter className="flex justify-between">
             {/* <Button variant="outline">Delete</Button> */}
-            <Button>Approve <CheckIcon className="mr-2 h-4 w-4" /> </Button>
+            <Button onClick={makeMember}>Approve <CheckIcon className="mr-2 h-4 w-4" /> </Button>
         </CardFooter>
         </Card>
     )

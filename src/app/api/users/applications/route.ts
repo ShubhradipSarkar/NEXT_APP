@@ -38,3 +38,22 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({error: error.message}, {status: 500})
     }
 }
+
+export async function PUT(request: NextRequest) {
+    try {
+        const reqBody = await request.json();
+        const {email} = reqBody;
+        console.log(email);
+        console.log("....................................")
+        const user = await Member.findOne({email: email});
+        console.log(user);
+        const user1 = await Member.findOneAndDelete({email: email});
+        
+        
+        return NextResponse.json({
+            message: "Application deleted",
+        })
+    } catch (error: any) {
+        return NextResponse.json({error: error.message}, {status: 500})
+    }
+}
