@@ -18,10 +18,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { BellIcon, CheckIcon } from "@radix-ui/react-icons"
 
 export default function CardWithForm({name, email, mob, edu, bGR, guardian, profession, interest, dob}) {
     return (
-        <Card className="w-full m-8">
+        <Card className="w-full m-8 bg-sky-500">
         <CardHeader>
             <CardTitle>Name</CardTitle>
             <CardDescription>{name}</CardDescription>
@@ -62,7 +63,7 @@ export default function CardWithForm({name, email, mob, edu, bGR, guardian, prof
         
         <CardFooter className="flex justify-between">
             {/* <Button variant="outline">Delete</Button> */}
-            <Button>Approve</Button>
+            <Button>Approve <CheckIcon className="mr-2 h-4 w-4" /> </Button>
         </CardFooter>
         </Card>
     )
