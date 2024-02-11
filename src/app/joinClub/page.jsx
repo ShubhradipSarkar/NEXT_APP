@@ -9,14 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/components/ui/use-toast"
 
-export function InputWithLabel() {
-  return (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label htmlFor="email">Email</Label>
-      <Input type="email" id="email" placeholder="Email" />
-    </div>
-  )
-}
+
 
 import { Checkbox } from "@/components/ui/checkbox"
 import { setErrorMap } from 'zod';
