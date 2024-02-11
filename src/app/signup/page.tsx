@@ -55,7 +55,7 @@ function SignUp() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center max-h-screen py-5">
+        <div className="flex flex-col items-center justify-center min-h-screen py-5">
             {loading?(<center><h1 className="m-3">Please wait, we are registering you...</h1></center>):(<center><h1 className="m-3">Register User</h1></center>)}
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

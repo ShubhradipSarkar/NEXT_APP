@@ -54,7 +54,7 @@ function LoginPage() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center max-h-screen py-5">
+        <div className="flex flex-col items-center justify-center min-h-screen py-5">
             {loading?(<center><h1 className="m-3">Please Wait...</h1></center>):(<center><h1 className="m-3">Login</h1></center>)}
             
             <Form {...form}>

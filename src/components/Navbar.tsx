@@ -15,6 +15,8 @@ import { useEffect } from "react";
 import axios from "axios"
 import MessageButton from "@/components/NavbarButtons/MessageButton"
 import AdminOnlyButton from "@/components/NavbarButtons/AdminOnlyButton"
+import JoinClubButton from "@/components/NavbarButtons/JoinClubButton"
+
 export default function Navbar_() {
     const [state, setState] = React.useState(false);
     const [ismember, setIsmember] = React.useState(false);
@@ -106,6 +108,7 @@ export default function Navbar_() {
                                 <CateGoriesButton/>
                                 <PresentMovButton/>
                                 <HistoryMovButton/>
+                                {!ismember && <JoinClubButton/>}
                                 <PhotoButton/>
                                 <ContactButton/>
                                 {ismember && <MessageButton/>}

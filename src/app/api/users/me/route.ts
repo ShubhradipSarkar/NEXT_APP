@@ -5,6 +5,13 @@ import { connect } from "@/DBConfig/DBConfig";
 
 connect();
 
+export async function POST(request: NextRequest) {
+    try {
+        
+    } catch (error: any) {
+        return NextResponse.json({error: error.message}, {status: 400})
+    }
+}
 export async function GET(request: NextRequest) {
     try {
         const userId = await getDataFromToken(request);

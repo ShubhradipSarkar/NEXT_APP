@@ -5,21 +5,34 @@ const MemberSchema = new mongoose.Schema({
         type: String,
         required: {true: "Please provide a username"},
     },
-    mobile: {
+    guardian: {
         type: String,
         
     },
-    designation: {
+    dob: {
         type: String,
         
     },
-    bio: {
+    edu: {
         type: String,
     },
-    isAdmin: {
-        type: Boolean,
-        default: false,
+    profession:{
+        type: String,
+    },
+    bGR: {
+        type: String,
+    },
+    interest: {
+        type: String,
+    },
+    mob: {
+        type: String,
+    },
+    email: {
+        type: String,
+        unique: true,
     }
+
 
 })
 const Member = mongoose.models.members || mongoose.model("members", MemberSchema);
