@@ -29,14 +29,15 @@ function Gallery() {
     useEffect(() => {
         const findMe = async() => {
             try {
+                const image = await axios.get("/api/users/Gallery");
+                //console.log(image.data.Photo);
+                setImages(image.data.Photo);
                 const whoIsMe = await axios.get("/api/users/me");
                 
                 setismember(whoIsMe.data.data.isMember);
                 setauthor(whoIsMe.data.data.username);
                 setIsAdmin(whoIsMe.data.data.isAdmin);
-                const image = await axios.get("/api/users/Gallery");
-                //console.log(image.data.Photo);
-                setImages(image.data.Photo);
+                
                 
                 
             } catch (error) {
