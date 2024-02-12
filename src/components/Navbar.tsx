@@ -22,12 +22,13 @@ export default function Navbar_() {
     const [state, setState] = React.useState(false);
     const [ismember, setIsmember] = React.useState(false);
     const [isadmin, setisadmin] = React.useState(false);
+    const [user, setUser] = React.useState("");
     const router = useRouter();
 
     useEffect(() => {
         const Membeship = async () => {
             const users = await axios.get("/api/users/me");
-            
+            setUser(users.data.data.username);
             setIsmember(users.data.data.isMember);
             setisadmin(users.data.data.isAdmin);
         };
@@ -53,6 +54,7 @@ export default function Navbar_() {
                 <div className="alltop">
                     <div className="top">
                         <div>
+                        
                             <center>
                                 <div className="flex items-center justify-center">
                                     <div className="px-2">
@@ -87,18 +89,23 @@ export default function Navbar_() {
                                 </div>
                                 
                             </center>
-                            
+                            <div className="flex justify-end">
+                            <p className="text-black px-2">{user}</p>
+                            </div>
                         </div>
                     </div>
                     <center>
                         {" "}
                         <div
-                        className="bg-white m-0 p-2 font-bold text-lime-800"
+                        className="bg-white m-0 font-bold text-lime-800"
                             
                         >
                             বাংলার জনবিজ্ঞান আন্দোলনে একটি পথিকৃত সংগঠন | A PIONEER PEOPLE&apos;S SCIENCE ORGANIZATION OF BENGAL
-                        </div>{" "}
+                        </div>
+                        {" "}
+
                     </center>
+                    
                 </div>
             </div>
 

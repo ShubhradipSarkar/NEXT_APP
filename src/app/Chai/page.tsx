@@ -34,7 +34,7 @@ function ChaiPage() {
             <div className="">
             
 
-                <div>ChaiPage </div>
+                
                 <h1>{userId}</h1>
                 <button className="px-6 py-2 bg-blue-500 rounded
                     my-3 hover:bg-blue-800">Test button</button>
