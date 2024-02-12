@@ -106,14 +106,17 @@ export default function Card_({userId, username, email, admin, public_id}) {
         <Card className="m-3 md:w-[200px]">
             {admin ? (<p className="p-1 italic text-bold">Admin</p>):(<p className="p-4 text-yellow-500 text-bold">   </p>)}
             <center>
-            <Image
-            src={public_id}
+                
+                <Image
+                    src={public_id}
+                    
+                    alt="/image_profile.png"
+                    width={50}
+                    height={40}
+                    
+                />
             
-            alt="/image_profile.png"
-            width={80}
-            height={40}
-            className="m-2"
-            />
+            
             {/* <CldImage src={result.public_id} width={result.width} height={result.height} alt="" /> */}
             <CardHeader>
             {(myId===userId) && <CldUploadButton
@@ -122,7 +125,7 @@ export default function Card_({userId, username, email, admin, public_id}) {
                 onUpload={handelImageUpload}
             >
                 <span>
-                Upload
+                <Button variant="bluish" size="sm">Change Image</Button>
                 </span>
             </CldUploadButton>}
             <CardTitle>{username}</CardTitle>
