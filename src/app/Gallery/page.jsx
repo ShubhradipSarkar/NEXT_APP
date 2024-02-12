@@ -14,6 +14,7 @@ import { image } from '@nextui-org/react';
 import Card_Gallery from '@/components/Card_Gallery'
 import {NextUIProvider} from "@nextui-org/react";
 import {Spinner} from "@nextui-org/react";
+import { useToast } from "@/components/ui/use-toast"
 
 function Gallery() {
     const [ismember, setismember] = useState(false);
@@ -22,6 +23,8 @@ function Gallery() {
     const [author, setauthor] = useState("");
     const [Images, setImages] = useState([]);
     const [isloading, SetIsloading] = useState(true);
+    const [isadmin, setIsAdmin] = useState(false);
+    const { toast } = useToast()
 
     useEffect(() => {
         const findMe = async() => {
@@ -30,10 +33,11 @@ function Gallery() {
                 
                 setismember(whoIsMe.data.data.isMember);
                 setauthor(whoIsMe.data.data.username);
-
+                setIsAdmin(whoIsMe.data.data.isAdmin);
                 const image = await axios.get("/api/users/Gallery");
                 //console.log(image.data.Photo);
                 setImages(image.data.Photo);
+                
                 
             } catch (error) {
                 
@@ -48,7 +52,17 @@ function Gallery() {
         try {
             console.log("result", result.info.url);
             seturl(result.info.url);
+            toast({
+                title: "Image uploaded, now add description",
+                // description: "Your messages motivate us to work harder and better",
+            })
         } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                description: "Image could not be uploaded.",
+                
+            })
             console.log("error uploading image", error);
         }
         
@@ -61,8 +75,19 @@ function Gallery() {
                 photo_url: url,
                 author: author,
             })
-            console.log("uploaded", upload);
+            toast({
+                title: "Photo Uploaded to Gallery",
+                description: "Refresh page to see",
+            })
+            setdescription("");
+            //console.log("uploaded", upload);
         } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                description: "post could not be uploaded",
+                
+            })
             console.log("could not add image to gallery", error);
         }
     }
@@ -104,7 +129,7 @@ function Gallery() {
                 {
                     Images.map((data,idx)=>(
                         
-                        <div> <Card_Gallery  description={data.description} author={data.author} key={idx} public_id={data.photo_url}/></div>
+                        <div className='w-80'> <Card_Gallery  description={data.description} author={data.author} key={idx} public_id={data.photo_url} isadmin={isadmin}/></div>
                     ))
                 }
                 </div>

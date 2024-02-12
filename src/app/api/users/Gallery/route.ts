@@ -39,3 +39,19 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({error: error.message}, {status: 500})
     }
 }
+
+export async function PUT(request: NextRequest) {
+    try {
+        const reqBody = await request.json();
+        const {photo_url} = reqBody;
+        
+        const deletedImage = await Gallery.findOneAndDelete({photo_url:photo_url});
+        
+        
+        return NextResponse.json({
+            message: "Image deleted",
+        })
+    } catch (error: any) {
+        return NextResponse.json({error: error.message}, {status: 500})
+    }
+}
