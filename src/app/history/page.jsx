@@ -7,10 +7,19 @@ import axios from 'axios'
 import { NextUIProvider } from '@nextui-org/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+  } from "@/components/ui/card"
 
 export default function History() {
     const [Histories, setHistories] = useState([]);
     const [imgUrl, SetImgUrl] = useState("");
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         const getContent = async() => {
             try {
@@ -20,6 +29,8 @@ export default function History() {
                 console.log(history.data.Post);
             } catch (error) {
                 
+            } finally {
+                setLoading(false);
             }
         }
         getContent();
@@ -28,26 +39,22 @@ export default function History() {
         <NextUIProvider>
         <div>
             <Navbar_/>
-            <div>
-                History Page
+            <center>History Page</center>
+            <div className='items-center justify-center flex flex-row flex-wrap  m-3'>
+                
                 {Histories.map((hist, key)=>(
-                    <Link href={`history/${hist._id}`}>
-                    <div className='m-2 p-2' >
-                        <Image 
-                        src="/lock.png"
-                        alt="..."
-                        width={50}
-                        height={50}
-                        />
-                        <p>{hist._id}</p>
-                        <p>{hist.photo_url[0]}</p>
-                        <p>{hist.title}</p>
-                        <p>{hist.description_short}</p>
-
+                    <div className='relative grid grid-cols-2 bg-red-200'>
+                        <div className='relative'>
+                            <Image layout='fill' objectFit='cover' src='/riki1.jpeg'/>
+                        </div>
+                        <p className='max-w-prose py-12 px-4'>
+                            {hist.description_short}
+                        </p>
                     </div>
-                    </Link>
+                    
                 ))}
             </div>
+            
             <Footer_/>
         </div>
         </NextUIProvider>
