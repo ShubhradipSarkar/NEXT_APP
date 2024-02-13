@@ -29,6 +29,7 @@ export default function Card_Gallery({description, author, public_id, isadmin}) 
         <Card className="m-3 md:w-[250px]">
             <p className="p-1 italic text-bold">{author}</p>
             <center>
+                <div className="clip-path:circle(50px at 0 100px)">
                 <Image
                     src={public_id}
                     
@@ -37,6 +38,8 @@ export default function Card_Gallery({description, author, public_id, isadmin}) 
                     height={120}
                     
                 />
+                </div>
+                
                 {isadmin && <div><Button variant="default" size="sm" onClick={deletePhotoFromGallery}>Delete Image</Button></div> }
                 <CardHeader>
                     {/* <CardTitle>{author}</CardTitle> */}

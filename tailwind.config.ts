@@ -76,7 +76,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"),nextui()],
+  plugins: [require("tailwindcss-animate"),nextui(),require('tailwind-clip-path')],
   
 } satisfies Config
 

@@ -26,7 +26,7 @@ function About() {
     }, []);
     return (
         <NextUIProvider>
-        <div>
+        <div className='min-h-screen'>
             <Navbar_/>
                 <div>
                 {isloading ? (

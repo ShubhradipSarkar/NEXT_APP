@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function HistoryMovButton() {
     return (
         <div className='px-1 '>
-            <Link href="History">
+            <Link href="history">
             <Button variant='bluish' >
                     <div className='text-md m-2'>
                         আন্দোলনের ইতিহাস <br/> HISTORY OF MOVEMENTS

@@ -96,7 +96,7 @@ function Gallery() {
         <NextUIProvider>
         <div>
             <Navbar_/>
-
+            <div className='min-h-screen'>
             {ismember && 
             <div>
             <center>
@@ -137,7 +137,7 @@ function Gallery() {
             )}
                 
                 
-            
+            </div>
             <Footer_/>
         </div>
         </NextUIProvider>
