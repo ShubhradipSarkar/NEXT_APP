@@ -8,12 +8,13 @@ connect()
 export async function POST(request: NextRequest){
     try {
         const reqBody = await request.json()
-        const {description, title} = reqBody
+        const {description, photo_url, title} = reqBody
         const description_short = description.slice(0,50)+"...";
         // Save Message
         const NewPost = new History({
             description,
             description_short,
+            photo_url,
             title,
         })
         await NewPost.save();

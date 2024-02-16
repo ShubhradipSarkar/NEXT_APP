@@ -41,50 +41,25 @@ export default function UserProfile({params}) {
             
             <div className=''>
             {loading ? (<center><div className='p-8 m-8'><Spinner label="Loading..." color="success" size='lg' className='m-8 p-8'/></div></center> ) : (
-                // <div className='m-3 p-3'>
-                //     <Image 
-                //         src="/lock.png"
-                //         alt="..."
-                //         width={50}
-                //         height={50}
-                //     />
-                //     <p>{data.title}</p>
-                //     <p>{data.description}</p>
-                // </div>
-                <div className="relative flex flex-row flex-wrap bg-clip-border rounded-xl bg-white text-gray-700 shadow-md max-w-[48rem] flex-row">
-  <div
-    className="relative w-2/5 md:w-full m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
-    <Image 
-        src="/Mouse_Pointer_001.png"
-        alt='LUL'
-        
-        height={170}
-        width={170}
-    />
-  </div>
-  <div className="p-6">
-    <h6
-      className="mb-4 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-gray-700 uppercase">
-      startups
-    </h6>
-    <h4 className="mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-      Lyft launching cross-platform service this week
-    </h4>
-    <p className="mb-8 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
-      Like so many organizations these days, Autodesk is a company in
-      transition. It was until recently a traditional boxed software company
-      selling licenses. Yet its own business model disruption is only part of
-      the story
-    </p>
-    <a href="#" className="inline-block"><button
-        className="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-gray-900/10 active:bg-gray-900/20"
-        type="button">
-        Learn More<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-          stroke-width="2" className="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-        </svg></button></a>
-  </div>
-</div>  
+                
+                <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                  <a href="#">
+                      <img className="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
+                  </a>
+                  <div className="p-5">
+                      <a href="#">
+                          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                      </a>
+                      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                      <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                          Read more
+                          <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                          </svg>
+                      </a>
+                  </div>
+                </div>
+
             )}
             
             </div>
