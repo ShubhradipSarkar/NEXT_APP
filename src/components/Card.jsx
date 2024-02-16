@@ -111,7 +111,7 @@ export default function Card_({userId, username, email, admin, public_id}) {
                     src={public_id}
                     
                     alt="/image_profile.png"
-                    width={50}
+                    width={100}
                     height={40}
                     
                 />

@@ -30,10 +30,12 @@ import {
     const [titleNew, settitleNew] = useState("");
     const [descriptionNew, setdescriptionNew] = useState("");
     const [isadmin, setIsAdmin] = useState(false);
-    
+    const [buttonText, setButtonText] = useState("Upload Image")
     const handelImageUpload = async(result) => {
         try {
-            console.log("result", result.info.url);
+            console.log(result)
+            //console.log("result", result.info.url);
+            setButtonText(result.info.original_filename);
             seturl(result.info.url);
             toast({
                 title: "Image uploaded, now add description",
@@ -58,7 +60,7 @@ import {
                 title: titleNew,
             })
             toast({
-                title: "Photo Uploaded to Gallery",
+                title: "History Uploaded to history wall",
                 description: "Refresh page to see",
             })
             settitleNew("");
@@ -105,19 +107,19 @@ import {
                 onUpload={handelImageUpload}
             >
                 <span>
-                <Button variant="bluish" size="sm">Upload Image</Button>
+                <Button variant="bluish" className='w-80'>{buttonText==='Upload Image'? (<div>Upload Image <center><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.81825 1.18188C7.64251 1.00615 7.35759 1.00615 7.18185 1.18188L4.18185 4.18188C4.00611 4.35762 4.00611 4.64254 4.18185 4.81828C4.35759 4.99401 4.64251 4.99401 4.81825 4.81828L7.05005 2.58648V9.49996C7.05005 9.74849 7.25152 9.94996 7.50005 9.94996C7.74858 9.94996 7.95005 9.74849 7.95005 9.49996V2.58648L10.1819 4.81828C10.3576 4.99401 10.6425 4.99401 10.8182 4.81828C10.994 4.64254 10.994 4.35762 10.8182 4.18188L7.81825 1.18188ZM2.5 9.99997C2.77614 9.99997 3 10.2238 3 10.5V12C3 12.5538 3.44565 13 3.99635 13H11.0012C11.5529 13 12 12.5528 12 12V10.5C12 10.2238 12.2239 9.99997 12.5 9.99997C12.7761 9.99997 13 10.2238 13 10.5V12C13 13.104 12.1062 14 11.0012 14H3.99635C2.89019 14 2 13.103 2 12V10.5C2 10.2238 2.22386 9.99997 2.5 9.99997Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></center></div>):(buttonText)}</Button>
                 </span>
             </CldUploadButton>
             <div className="grid w-80 gap-2">
-            <Textarea placeholder="Title" value={titleNew} onChange={(e)=>{settitleNew(e.target.value)}}/>
+            <Textarea placeholder="Title of the content" value={titleNew} onChange={(e)=>{settitleNew(e.target.value)}}/>
             <Textarea placeholder="Description" value={descriptionNew} onChange={(e)=>{setdescriptionNew(e.target.value)}}/>
-            <Button onClick={PostHistory}>Post <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.20308 1.04312C1.00481 0.954998 0.772341 1.0048 0.627577 1.16641C0.482813 1.32802 0.458794 1.56455 0.568117 1.75196L3.92115 7.50002L0.568117 13.2481C0.458794 13.4355 0.482813 13.672 0.627577 13.8336C0.772341 13.9952 1.00481 14.045 1.20308 13.9569L14.7031 7.95693C14.8836 7.87668 15 7.69762 15 7.50002C15 7.30243 14.8836 7.12337 14.7031 7.04312L1.20308 1.04312ZM4.84553 7.10002L2.21234 2.586L13.2689 7.50002L2.21234 12.414L4.84552 7.90002H9C9.22092 7.90002 9.4 7.72094 9.4 7.50002C9.4 7.27911 9.22092 7.10002 9 7.10002H4.84553Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></Button>
+            <Button onClick={PostHistory}><div className='text-semibold'>Post </div><div><Image src="/Mouse_Pointer_001.png" alt="lol" width={40} height={40}/></div></Button>
             </div>
             </center>
             }
             
             <center>History Page</center>
-            <div className='items-center justify-center flex flex-row flex-wrap  m-3'>
+            <div className='items-center justify-center flex flex-row flex-wrap min-h-screen m-3'>
             {loading ? (<center><div className='p-8 m-8'><Spinner label="Loading..." color="success" size='lg' className='m-8 p-8'/></div></center> ) : (
                 <div className='flex flex-row flex-wrap'>
                     {Histories.map((hist, key)=>(

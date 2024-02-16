@@ -53,7 +53,7 @@ function contact() {
         <div>
             <Navbar_/>
             
-            <div className='flex flex-row flex-wrap'>
+            <div className='flex flex-row flex-wrap min-h-screen'>
                 
                 <div className=' p-8 m-3  rounded-md box-border w-full xl:w-1/2'>
                     <center>

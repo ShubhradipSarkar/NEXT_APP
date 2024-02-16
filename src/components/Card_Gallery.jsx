@@ -34,8 +34,8 @@ export default function Card_Gallery({description, author, public_id, isadmin}) 
                     src={public_id}
                     
                     alt="/image_profile.png"
-                    width={120}
-                    height={120}
+                    width={320}
+                    height={320}
                     
                 />
                 </div>

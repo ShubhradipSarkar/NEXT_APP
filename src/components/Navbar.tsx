@@ -90,7 +90,7 @@ export default function Navbar_() {
                                 
                             </center>
                             <div className="flex justify-end">
-                            <p className="text-black px-2">{user}</p>
+                            
                             </div>
                         </div>
                     </div>
@@ -112,10 +112,12 @@ export default function Navbar_() {
             <nav className="bg-white w-full md:border-0 z-0">
                 <div className="items-center px-4 max-w-screen-xl mx-auto  md:px-8">
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                        <div className="xl:hidden">
+                        <div className="xl:hidden flex flex-row self-end justify-items-end">
                             <button className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border" onClick={() => setState(!state)}>
                                 <Menu/>
                             </button>
+                            <p className="text-black italic m-2">{user}</p>
+                            
                         </div>
                     </div>
                     <div className={`flex-1 justify-self-center pb-3 xl:block md:pb-0 md:mt-0 ${state ? "block" : "hidden"}`}>
