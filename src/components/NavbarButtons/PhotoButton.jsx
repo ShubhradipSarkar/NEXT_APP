@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 function PhotoButton() {
     return (
-        <div className='px-3 '>
+        <div className='pr-1.5'>
             <Link href="/Gallery">
             <Button variant='bluish' >
                     <div className='text-md m-2'>

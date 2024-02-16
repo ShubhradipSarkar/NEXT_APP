@@ -6,7 +6,7 @@ function JoinClubButton() {
         <div className='px-3 '>
                 <Link href="joinClub">
                     <Button variant='prime'>
-                        <div className='text-md m-2'>
+                        <div className='text-md'>
                             ক্লাবে যোগ দিন <br /> Join Club
                         </div>
                     </Button>
