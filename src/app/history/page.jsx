@@ -15,7 +15,8 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
-
+  import {Spinner} from "@nextui-org/react";
+  
 export default function History() {
     const [Histories, setHistories] = useState([]);
     const [imgUrl, SetImgUrl] = useState("");
@@ -41,18 +42,28 @@ export default function History() {
             <Navbar_/>
             <center>History Page</center>
             <div className='items-center justify-center flex flex-row flex-wrap  m-3'>
-                
-                {Histories.map((hist, key)=>(
-                    <div className='relative grid grid-cols-2 bg-red-200'>
-                        <div className='relative'>
-                            <Image layout='fill' objectFit='cover' src='/riki1.jpeg'/>
+            {loading ? (<center><div className='p-8 m-8'><Spinner label="Loading..." color="success" size='lg' className='m-8 p-8'/></div></center> ) : (
+                <div>
+                    {Histories.map((hist, key)=>(
+                        <Link href={`history/${hist._id}`}>
+                        <div className='m-2 p-2' >
+                            <Image 
+                            src="/lock.png"
+                            alt="..."
+                            width={50}
+                            height={50}
+                            />
+                            <p>{hist._id}</p>
+                            <p>{hist.photo_url[0]}</p>
+                            <p>{hist.title}</p>
+                            <p>{hist.description_short}</p>
+
                         </div>
-                        <p className='max-w-prose py-12 px-4'>
-                            {hist.description_short}
-                        </p>
-                    </div>
-                    
-                ))}
+                        </Link>
+                    ))}
+                </div>
+                )}
+                
             </div>
             
             <Footer_/>
