@@ -103,7 +103,7 @@ export default function Navbar_() {
                             বাংলার জনবিজ্ঞান আন্দোলনে একটি পথিকৃত সংগঠন | A PIONEER PEOPLE&apos;S SCIENCE ORGANIZATION OF BENGAL
                         </div>
                         {" "}
-
+                        <div className={` text-black italic xl:block ${state ? "block" : "hidden"}`}>{user}</div>
                     </center>
                     
                 </div>
@@ -116,7 +116,7 @@ export default function Navbar_() {
                             <button className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border" onClick={() => setState(!state)}>
                                 <Menu/>
                             </button>
-                            <p className="text-black italic m-2">{user}</p>
+                            <p className={`m-2 text-black italic xl:block ${!state ? "block" : "hidden"}`}>{user}</p>
                             
                         </div>
                     </div>

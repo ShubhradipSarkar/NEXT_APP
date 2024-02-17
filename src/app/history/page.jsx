@@ -118,7 +118,7 @@ import {
             </center>
             }
             
-            <center>History Page</center>
+            <center><p className='text-3xl m-1'>History Page</p></center>
             <div className='items-center justify-center flex flex-row flex-wrap min-h-screen m-3'>
             {loading ? (<center><div className='p-8 m-8'><Spinner label="Loading..." color="success" size='lg' className='m-8 p-8'/></div></center> ) : (
                 <div className='flex flex-row flex-wrap'>

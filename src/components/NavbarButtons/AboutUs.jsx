@@ -6,7 +6,7 @@ import Link from 'next/link'
 function AboutUsButton() {
     const router = useRouter();
     return (
-        <div className='px-3 '>
+        <div className='px-1'>
             <Link href="about">
                 <Button variant='bluish'>
                     <div className='text-md m-2'>
