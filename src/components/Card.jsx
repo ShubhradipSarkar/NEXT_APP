@@ -30,7 +30,9 @@ export default function Card_({userId, username, email, admin, public_id}) {
     const [isadmin, setisadmin] = useState(false);
     const [myId, setmyId] = useState("");
     const { toast } = useToast()
-    
+    if(!public_id){
+        public_id='/image_profile.png'
+    }
 
     //console.log(imageUrlToShow)
     useEffect(() => {
@@ -107,10 +109,8 @@ export default function Card_({userId, username, email, admin, public_id}) {
             {admin ? (<p className="p-1 italic text-bold">Admin</p>):(<p className="p-4 text-yellow-500 text-bold">   </p>)}
             <center>
                 
-                <Image
+                <CldImage
                     src={public_id}
-                    
-                    alt="/image_profile.png"
                     width={100}
                     height={40}
                     
