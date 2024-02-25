@@ -111,9 +111,9 @@ export default function Card_({userId, username, email, admin, public_id}) {
                 
                 <CldImage
                     src={public_id}
-                    width={100}
-                    height={40}
-                    
+                    width="150"
+                    height="150"
+                    crop="fill"
                 />
             
             

@@ -132,9 +132,9 @@ import {
                                 src={hist.photo_url[0]}
                                 loading='lazy'
                                 alt="/image_profile.png"
-                                width={320}
-                                height={320}
-                                
+                                width="320"
+                                height="320"
+                                crop='fill'
                             />
                             </div>
                             

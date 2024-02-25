@@ -40,6 +40,7 @@ export async function POST(request: NextRequest) {
         response.cookies.set("token", token, {
             httpOnly: true,
         })
+        //localStorage.setItem("token", token);
         return response;
 
     } catch (error: any) {

@@ -43,7 +43,7 @@ function LoginPage() {
             const response = await axios.post("/api/users/login", values)
             
             // Handle successful login
-            router.push("/Chai");
+            router.push("/history");
             
         } catch (error:any) {
             console.log("Login failed", error.response.data.error);

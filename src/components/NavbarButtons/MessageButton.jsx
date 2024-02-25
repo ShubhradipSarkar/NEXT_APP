@@ -4,21 +4,16 @@ import { Button } from '../ui/button'
 import Image from 'next/image'
 function MessageButton() {
   return (
-    <div className='px-3 '>
+    <div className='px-1'>
         <Link href="messagesForMembers">
             <Button variant='prime'>
-                <div className='text-md m-2'>
+                <div className='text-md'>
                     <div className='flex flex-row'>
                     
                         <div className='mx-2 text-bold'>
                             Messages <br /> From Public
                         </div>
-                        <Image
-                        src="/premium.png"
-                        width={25}
-                        height={25}
-                        alt=''
-                        />
+                        
                     </div>
                     
                 </div>
