@@ -34,12 +34,10 @@ export async function PUT(request: NextRequest) {
     try {
         const reqBody = await request.json();
         const {_id} = reqBody;
+        console.log(_id);
+        const Post = await History.findOneAndDelete({_id: _id});
         
-        const Post = await History.findOne({_id: _id});
         
-        return NextResponse.json({
-            Post
-        })
     } catch (error: any) {
         return NextResponse.json({error: error.message}, {status: 500})
     }

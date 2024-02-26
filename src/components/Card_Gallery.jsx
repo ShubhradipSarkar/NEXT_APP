@@ -16,7 +16,7 @@ export default function Card_Gallery({description, author, public_id, isadmin}) 
     
     const deletePhotoFromGallery = async() => {
         try {
-            const deletePhoto = axios.put("/api/users/Gallery",{
+            const deletePhoto = await axios.put("/api/users/Gallery",{
                 photo_url:public_id,
             })
             window.location.reload();
