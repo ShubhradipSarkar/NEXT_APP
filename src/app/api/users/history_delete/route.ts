@@ -36,7 +36,9 @@ export async function PUT(request: NextRequest) {
         const {_id} = reqBody;
         console.log(_id);
         const Post = await History.findOneAndDelete({_id: _id});
-        
+        return NextResponse.json({
+            message: "Card deleted",
+        })
         
     } catch (error: any) {
         return NextResponse.json({error: error.message}, {status: 500})

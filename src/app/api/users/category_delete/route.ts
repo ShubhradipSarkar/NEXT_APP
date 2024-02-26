@@ -36,7 +36,9 @@ export async function PUT(request: NextRequest) {
         const {_id} = reqBody;
         
         const Post = await Category.findOneAndDelete({_id: _id});
-        
+        return NextResponse.json({
+            message: "Card deleted",
+        })
         
 
     } catch (error: any) {
