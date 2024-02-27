@@ -103,7 +103,7 @@ export default function UserProfile({params}) {
             {IsAdmin && 
             <div >
             <center><p className='text-blue-500 text-xl'>Edit Content (Only for admins)</p></center>
-            <center><div><Textarea value={text} onChange={(e)=>{settext(e.target.value)}} className='h-full 2xl:w-full md:w-80 p-3'/> <Button onClick={updateContent}>Update Content</Button></div></center>
+            <center><div><Textarea value={text} onChange={(e)=>{settext(e.target.value)}} className='w-2/3 p-3'/> <Button onClick={updateContent}>Update Content</Button></div></center>
             </div>
             }
             <Footer_/>
