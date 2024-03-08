@@ -17,6 +17,7 @@ import MessageButton from "@/components/NavbarButtons/MessageButton"
 import AdminOnlyButton from "@/components/NavbarButtons/AdminOnlyButton"
 import JoinClubButton from "@/components/NavbarButtons/JoinClubButton"
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react"
 
 export default function Navbar_() {
     const [state, setState] = React.useState(false);
@@ -24,19 +25,20 @@ export default function Navbar_() {
     const [isadmin, setisadmin] = React.useState(false);
     const [user, setUser] = React.useState("");
     const router = useRouter();
-
-    useEffect(() => {
-        const Membeship = async () => {
-            const users = await axios.get("/api/users/me");
-            setUser(users.data.data.username);
-            setIsmember(users.data.data.isMember);
-            setisadmin(users.data.data.isAdmin);
-        };
+    const { data: session} = useSession()
+    console.log(session);
+    // useEffect(() => {
+    //     const Membeship = async () => {
+    //         const users = await axios.get("/api/users/me");
+    //         setUser(users.data.data.username);
+    //         setIsmember(users.data.data.isMember);
+    //         setisadmin(users.data.data.isAdmin);
+    //     };
         
-        Membeship();
+    //     Membeship();
           
         
-    }, []);
+    // }, []);
     
     const logOut = async() => {
         try {
@@ -103,7 +105,7 @@ export default function Navbar_() {
                             বাংলার জনবিজ্ঞান আন্দোলনে একটি পথিকৃত সংগঠন | A PIONEER PEOPLE&apos;S SCIENCE ORGANIZATION OF BENGAL
                         </div>
                         {" "}
-                        <div className={` text-black italic xl:block ${state ? "block" : "hidden"}`}>{user}</div>
+                        <div className={` text-black italic xl:block ${state ? "block" : "hidden"}`}>{session?.user?.username}</div>
                     </center>
                     
                 </div>
@@ -116,7 +118,7 @@ export default function Navbar_() {
                             <button className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border" onClick={() => setState(!state)}>
                                 <Menu/>
                             </button>
-                            <p className={`m-2 text-black italic xl:block ${!state ? "block" : "hidden"}`}>{user}</p>
+                            <p className={`m-2 text-black italic xl:block ${!state ? "block" : "hidden"}`}>{session?.user?.username}</p>
                             
                         </div>
                     </div>
@@ -124,15 +126,15 @@ export default function Navbar_() {
                         <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                             
                             <div className="text-gray-600 flex flex-col xl:flex-row hover:text-indigo-600 items-center">
-                                {isadmin && <AdminOnlyButton/>}
+                                {session?.user?.isAdmin && <AdminOnlyButton/>}
                                 <AboutUsButton />
                                 <CateGoriesButton/>
                                 <PresentMovButton/>
                                 <HistoryMovButton/>
-                                {!ismember && <JoinClubButton/>}
+                                {!session?.user?.isMember && <JoinClubButton/>}
                                 <PhotoButton/>
                                 <ContactButton/>
-                                {ismember && <MessageButton/>}
+                                {session?.user?.isMember && <MessageButton/>}
                                 <Button variant="admin" onClick={logOut}>Logout</Button>
                             </div>
                             

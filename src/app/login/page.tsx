@@ -18,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { signIn } from "next-auth/react";
 
 const formSchema = z.object({
     email: z.string().min(2).max(50),
@@ -40,10 +41,15 @@ function LoginPage() {
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
             setLoading(true);
-            const response = await axios.post("/api/users/login", values)
             
-            // Handle successful login
+            const response = await signIn("credentials", {
+                email: values.email,
+                password: values.password,
+                redirect: false,
+              });
+            
             router.push("/history");
+           
             
         } catch (error:any) {
             console.log("Login failed", error.response.data.error);
