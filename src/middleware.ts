@@ -1,19 +1,22 @@
 import { NextResponse, NextRequest } from 'next/server'
- 
+import { getToken } from "next-auth/jwt";
 
 
-export function middleware(request: NextRequest) {
-    const path = request.nextUrl.pathname
+export async function middleware(req: NextRequest) {
+    const path = req.nextUrl.pathname
     const isPublicPath = path === '/login' || path === '/signup'
     const specialPath = path === '/joinClub'
-    const token = request.cookies.get('token')?.value || ''
+    //const token = request.cookies.get('token')?.value || ''
+    const token = await getToken({
+        req: req,
+        secret: process.env.NEXTAUTH_SECRET,
+    })
 
-    
     if(isPublicPath && token){
-        return NextResponse.redirect(new URL('/Chai', request.nextUrl))
+        return NextResponse.redirect(new URL('/history', req.nextUrl))
     }
     if(specialPath && !token){
-        return NextResponse.redirect(new URL('/login', request.nextUrl))
+        return NextResponse.redirect(new URL('/login', req.nextUrl))
     }
     // if(!isPublicPath && !token){
     //     return NextResponse.redirect(new URL('/login', request.nextUrl))

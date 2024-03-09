@@ -58,6 +58,7 @@ const authOptions = {
                     const {name, email} = user;
                     const exist = await User.findOne({email});
                     if(exist){
+                        console.log("the user in db is ", exist);
                         return user;
                     }
                     console.log(name);
@@ -78,13 +79,16 @@ const authOptions = {
         },
         async jwt({token, user}){
             if(user){
-                token.username = user.username;
-                token.email = user.email;
-                token.id = user.id;
-                token.isAdmin=user.isAdmin;
-                token.isMember=user.isMember;
+                
+                const exist = await User.findOne({email: user.email});
+                console.log("user is here goat : ", exist);
+                token.username = exist.username;
+                token.email = exist.email;
+                token.id = exist._id;
+                token.isAdmin=exist.isAdmin;
+                token.isMember=exist.isMember;
             }
-            //console.log("token = ", token);
+            console.log("token = ", token);
             return token;
         },
         async session({session, token}){
@@ -97,7 +101,7 @@ const authOptions = {
 
                 
             }
-            //console.log("session = ", session);
+            console.log("session = ", session);
             return session;
         }
     }
