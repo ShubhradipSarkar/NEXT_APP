@@ -3,16 +3,16 @@ mongoose.Promise = global.Promise;
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: {true: "Please provide a username"},
+        //required: {true: "Please provide a username"},
     },
     email: {
         type: String,
-        required: {true: "Please provide email"},
+        //required: {true: "Please provide email"},
         unique: true,
     },
     password: {
         type: String,
-        required: true,
+        //required: true,
     },
     isVerified: {
         type: Boolean,
