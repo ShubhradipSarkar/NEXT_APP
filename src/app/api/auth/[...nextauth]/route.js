@@ -16,7 +16,7 @@ async function login(credentials){
         if(!user || !isCorrect){
             throw new Error("Hat bsdk");
         }
-        //console.log("----------------------------------->",user);
+        
         return user;
     } catch (error) {
         console.log("hatbsdk",error);
@@ -94,6 +94,8 @@ const authOptions = {
                 session.user.email=token.email;
                 session.user.isAdmin=token.isAdmin;
                 session.user.isMember=token.isMember;
+
+                
             }
             //console.log("session = ", session);
             return session;

@@ -26,7 +26,7 @@ export default function Navbar_() {
     const [user, setUser] = React.useState("");
     const router = useRouter();
     const { data: session} = useSession()
-    console.log(session);
+    console.log("-------------------------------->",session);
     // useEffect(() => {
     //     const Membeship = async () => {
     //         const users = await axios.get("/api/users/me");
@@ -105,7 +105,7 @@ export default function Navbar_() {
                             বাংলার জনবিজ্ঞান আন্দোলনে একটি পথিকৃত সংগঠন | A PIONEER PEOPLE&apos;S SCIENCE ORGANIZATION OF BENGAL
                         </div>
                         {" "}
-                        <div className={` text-black italic xl:block ${state ? "block" : "hidden"}`}>{session?.user?.username}</div>
+                        <div className={` text-black italic xl:block ${state ? "block" : "hidden"}`}>{session?.user?.username!}</div>
                     </center>
                     
                 </div>
@@ -126,7 +126,7 @@ export default function Navbar_() {
                         <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                             
                             <div className="text-gray-600 flex flex-col xl:flex-row hover:text-indigo-600 items-center">
-                                {session?.user?.isAdmin && <AdminOnlyButton/>}
+                                {session?.user?.isAdmin! && <AdminOnlyButton/>}
                                 <AboutUsButton />
                                 <CateGoriesButton/>
                                 <PresentMovButton/>
