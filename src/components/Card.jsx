@@ -24,30 +24,34 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { useToast } from "@/components/ui/use-toast"
 import {CldImage, CldUploadButton, CldUploadWidgetResults } from "next-cloudinary";
-
+import { useSession } from "next-auth/react";
 
 export default function Card_({userId, username, email, admin, public_id}) {
-    const [isadmin, setisadmin] = useState(false);
-    const [myId, setmyId] = useState("");
+    
+    const { data: session } = useSession();
+    const myId = session?.user.id;
+    const isadmin = session?.user.isAdmin;
     const { toast } = useToast()
+    
+
     if(!public_id){
         public_id='/image_profile.png'
     }
 
     //console.log(imageUrlToShow)
-    useEffect(() => {
-        const findMe = async() => {
-            try {
-                const whoIsMe = await axios.get("/api/users/me");
-                setmyId(whoIsMe.data.data._id)
-                setisadmin(whoIsMe.data.data.isAdmin);
+    // useEffect(() => {
+    //     const findMe = async() => {
+    //         try {
+    //             const whoIsMe = await axios.get("/api/users/me");
+    //             setmyId(whoIsMe.data.data._id)
+    //             setisadmin(whoIsMe.data.data.isAdmin);
                 
-            } catch (error) {
+    //         } catch (error) {
                 
-            }
-        }
-        findMe();
-    }, []);
+    //         }
+    //     }
+    //     findMe();
+    // }, []);
     const makeAdmin = async() => {
         
         try {

@@ -17,7 +17,7 @@ import MessageButton from "@/components/NavbarButtons/MessageButton"
 import AdminOnlyButton from "@/components/NavbarButtons/AdminOnlyButton"
 import JoinClubButton from "@/components/NavbarButtons/JoinClubButton"
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 
 export default function Navbar_() {
     const [state, setState] = React.useState(false);
@@ -26,7 +26,7 @@ export default function Navbar_() {
     const [user, setUser] = React.useState("");
     const router = useRouter();
     const { data: session} = useSession()
-    console.log("-------------------------------->",session);
+    //console.log("-------------------------------->",session);
     // useEffect(() => {
     //     const Membeship = async () => {
     //         const users = await axios.get("/api/users/me");
@@ -135,7 +135,8 @@ export default function Navbar_() {
                                 <PhotoButton/>
                                 <ContactButton/>
                                 {session?.user?.isMember && <MessageButton/>}
-                                <Button variant="admin" onClick={logOut}>Logout</Button>
+                                {session? (<Button variant="admin" onClick={()=>{signOut()}}>Logout</Button>):(<Button variant="admin" ><Link href="/login">Login</Link></Button>)}
+                                
                             </div>
                             
                         </ul>
