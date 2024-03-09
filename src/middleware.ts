@@ -8,6 +8,7 @@ export function middleware(request: NextRequest) {
     const specialPath = path === '/joinClub'
     const token = request.cookies.get('token')?.value || ''
 
+    
     if(isPublicPath && token){
         return NextResponse.redirect(new URL('/Chai', request.nextUrl))
     }
