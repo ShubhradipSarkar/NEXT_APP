@@ -19,7 +19,8 @@ import { Input } from "@/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Router } from "next/router";
-
+import Image from "next/image";
+import { signIn } from "next-auth/react";
 
 const formSchema = z.object({
     email: z.string().min(2).max(50),
@@ -56,7 +57,7 @@ function SignUp() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-5">
-            {loading?(<center><h1 className="m-3">Please wait, we are registering you...</h1></center>):(<center><h1 className="m-3">Register User</h1></center>)}
+            {loading?(<center><h1 className="text-2xl m-3">We are registering you...</h1></center>):(<center><h1 className=" text-2xl m-3">Register User</h1></center>)}
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormField
@@ -104,10 +105,12 @@ function SignUp() {
                     )}
                     />
                     <center className="text-red-500">{error}</center>
-                    <center><Button type="submit">Register</Button></center>
+                    <center><Button type="submit" className="text-md">Register</Button></center>
                 </form>
             </Form>
-            <Link href="/login" className="m-3 text-cyan-500">Login if you are already registered</Link>
+            <p className="m-3">Already have an account?<Link href="/login" className="text-cyan-500"> Login here</Link></p>
+            <p className="m-6">Or</p>
+            <center><Button className="text-md" onClick={()=>signIn("google")}>Sign in with Google <Image src="/google.png" alt="google" width={40} height={40} /></Button></center>
         </div>
     )
 }
