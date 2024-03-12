@@ -183,9 +183,9 @@ function Gallery({
     const page = searchParams['page'] ?? '1'
     const per_page = searchParams['per_page'] ?? '5'
 
-  // mocked, skipped and limited in the real app
-  const start = (Number(page) - 1) * Number(per_page) // 0, 5, 10 ...
-  const end = start + Number(per_page) // 5, 10, 15 ...
+    // mocked, skipped and limited in the real app
+    const start = (Number(page) - 1) * Number(per_page) // 0, 5, 10 ...
+    const end = start + Number(per_page) // 5, 10, 15 ...
     useEffect(() => {
         const findMe = async() => {
             try {
@@ -209,7 +209,7 @@ function Gallery({
         findMe();
     }, []);
     const entries = Images.slice(start, end)
-    console.log("entries are ", entries);
+    //console.log("entries are ", entries);
     const handelImageUpload = async(result) => {
         try {
             //console.log("result", result.info.url);

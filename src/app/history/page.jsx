@@ -21,8 +21,11 @@ import {
   import { useToast } from "@/components/ui/use-toast"
   import { Textarea } from '@/components/ui/textarea'
   import { useSession } from "next-auth/react"
+  import PaginationControls from '@/components/PaginationControls';
 
-  export default function History() {
+  export default function History({
+    searchParams,
+  }) {
     const [Histories, setHistories] = useState([]);
     const [imgUrl, SetImgUrl] = useState("");
     const [loading, setLoading] = useState(true);
@@ -33,6 +36,12 @@ import {
     const [isadmin, setIsAdmin] = useState(false);
     const [buttonText, setButtonText] = useState("Upload Image")
     const { data: session} = useSession()
+    const page = searchParams['page'] ?? '1'
+    const per_page = searchParams['per_page'] ?? '5'
+
+    // mocked, skipped and limited in the real app
+    const start = (Number(page) - 1) * Number(per_page) // 0, 5, 10 ...
+    const end = start + Number(per_page) // 5, 10, 15 ...
 
     const handelImageUpload = async(result) => {
         try {
@@ -116,6 +125,9 @@ import {
         }
         getContent();
     }, []);
+
+    const entries = Histories.slice(start, end);
+
     return (
         <NextUIProvider>
         <div>
@@ -143,7 +155,7 @@ import {
             <div className='items-center justify-center flex flex-row flex-wrap min-h-screen m-3'>
             {loading ? (<center><div className='p-8 m-8'><Spinner label="Loading..." color="success" size='lg' className='m-8 p-8'/></div></center> ) : (
                 <div className='flex flex-row flex-wrap'>
-                    {Histories.map((hist, key)=>(
+                    {entries.map((hist, key)=>(
                         
                         <Card className="m-3 md:w-[250px]">
                             <div className='flex flex-row'>
@@ -184,6 +196,11 @@ import {
                 )}
                 
             </div>
+            <center><PaginationControls
+                urlfor="history"
+                hasNextPage={end < Histories.length}
+                hasPrevPage={start > 0}
+            /></center>
             
             <Footer_/>
         </div>

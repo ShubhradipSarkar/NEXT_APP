@@ -80,9 +80,19 @@ import { Skeleton } from "@/components/ui/skeleton"
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"; 
 import {NextUIProvider} from "@nextui-org/react";
 import {Spinner} from "@nextui-org/react";
-function About() {
+import PaginationControls from '@/components/PaginationControls';
+function About({
+    searchParams,
+  }) {
     const [Data, setData] = useState([]);
     const [isloading, SetIsloading] = useState(true);
+    const page = searchParams['page'] ?? '1'
+    const per_page = searchParams['per_page'] ?? '10'
+
+    // mocked, skipped and limited in the real app
+    const start = (Number(page) - 1) * Number(per_page) // 0, 5, 10 ...
+    const end = start + Number(per_page) // 5, 10, 15 ...
+
     useEffect(() => {
         
 
@@ -90,10 +100,13 @@ function About() {
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
-            setData(data)
+            setData(data.member)
             SetIsloading(false);
         })
     }, []);
+
+    const entries = Data.slice(start, end);
+
     return (
         <NextUIProvider>
         <div className='min-h-screen'>
@@ -106,14 +119,18 @@ function About() {
                     
                         ) : (
                             <div className='items-center justify-center flex flex-row flex-wrap  m-3'>
-                                {Data.member.map((data)=>(
+                                {entries.map((data)=>(
                                     <Card_ userId={data._id } username={data.username} email={data.email} admin={data.isAdmin} key={data.email} public_id={data.profile_picture} className='m-3 w-auto'/>
                                 ))}
                                 
                             </div>
                         )}
                 </div>
-                
+                <center><PaginationControls
+                urlfor="about"
+                hasNextPage={end < Data.length}
+                hasPrevPage={start > 0}
+            /></center>
             <Footer_/>
         </div>
         </NextUIProvider>
