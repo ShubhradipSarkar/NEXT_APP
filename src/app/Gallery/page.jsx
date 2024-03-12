@@ -236,7 +236,7 @@ function Gallery({
             const upload = await axios.post("/api/users/Gallery",{
                 description: description,
                 photo_url: url,
-                author: author,
+                author: session?.user?.username,
             })
             toast({
                 title: "Photo Uploaded to Gallery",
