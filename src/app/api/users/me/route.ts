@@ -12,10 +12,13 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({error: error.message}, {status: 400})
     }
 }
-export async function GET(request: NextRequest) {
+export async function PUT(request: NextRequest) {
     try {
-        const userId = await getDataFromToken(request);
-        const Me = await User.findOne({_id: userId}).select("-password");
+        //const userId = await getDataFromToken(request);
+        const reqBody = await request.json();
+        const {id} = reqBody
+
+        const Me = await User.findOne({_id: id});
 
         return NextResponse.json({
             message: "User Found",

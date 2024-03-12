@@ -25,12 +25,19 @@ import axios from "axios"
 import { useToast } from "@/components/ui/use-toast"
 import {CldImage, CldUploadButton, CldUploadWidgetResults } from "next-cloudinary";
 import { useSession } from "next-auth/react";
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+  } from "@/components/ui/popover"
 
+  
 export default function Card_({userId, username, email, admin, public_id}) {
     
-    const { data: session } = useSession();
+    const { data: session} = useSession();
     const myId = session?.user.id;
     const isadmin = session?.user.isAdmin;
+    const [profile, setprofile] = useState([]);
     const { toast } = useToast()
     
 
@@ -52,6 +59,17 @@ export default function Card_({userId, username, email, admin, public_id}) {
     //     }
     //     findMe();
     // }, []);
+    const readProfile = async() => {
+        try {
+            const profileData = await axios.put("/api/users/me",{
+                id: userId,
+            })
+            setprofile(profileData.data.data);
+            console.log(profile);
+        } catch (error) {
+            
+        }
+    }
     const makeAdmin = async() => {
         
         try {
@@ -63,6 +81,7 @@ export default function Card_({userId, username, email, admin, public_id}) {
                 title: `${username} is added as new admin`,
                 description: "Reload page once...",
             })
+            //update({ name: "John Doe" })
             
         } catch (error) {
             console.log("couldn't add as admin", error);
@@ -139,7 +158,35 @@ export default function Card_({userId, username, email, admin, public_id}) {
         
         <center>
         <CardFooter className="flex justify-between">
-            <center><Button variant="outline" size="default">View </Button>
+            <center>
+            <Popover>
+            <PopoverTrigger onClick={readProfile}><Button variant="outline" size="default" >View </Button></PopoverTrigger>
+            <PopoverContent className="w-80 m-auto">
+                
+                <Card >
+                    <CardHeader>
+                        <center>
+                        
+                            <CldImage src={public_id} width="150" height="150" crop="fill"/>
+                        
+                        </center>
+                    </CardHeader>
+                    <CardContent>
+                        <center><p className="text-blue-500 m-2">{profile.profession}</p></center>
+                        <p className="m-2 p-1 border border-emerald-600 rounded">Name: {username || "--"}</p>
+                        <p className="m-2 p-1 border rounded">Guardian: {profile.guardian || "--"}</p>
+                        <p className="m-2 p-1 border rounded">Email: {email || "--"}</p>
+                        <p className="m-2 p-1 border rounded">date of birth: {profile.dob || "--"}</p>
+                        <p className="m-2 p-1 border rounded">Education: {profile.edu || "--"}</p>
+                        <p className="m-2 p-1 border rounded">Mobile: {profile.mob || "--"}</p>
+                        <p className="m-2 p-1 border rounded">Blood group: {profile.bGR || "--"}</p>
+                    </CardContent>
+                </Card>
+
+            </PopoverContent>
+            </Popover>
+                
+                
             {isadmin && !admin && <Button variant="default" size="default" onClick={makeAdmin}>Appoint Admin </Button>}
             {isadmin && admin && <Button variant="default" size="default" onClick={removeAdmin}>Remove Admin </Button>}
             </center>
