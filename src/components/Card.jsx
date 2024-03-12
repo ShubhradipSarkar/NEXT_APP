@@ -161,7 +161,7 @@ export default function Card_({userId, username, email, admin, public_id}) {
             <center>
             <Popover>
             <PopoverTrigger onClick={readProfile}><Button variant="outline" size="default" >View </Button></PopoverTrigger>
-            <PopoverContent className="w-80 m-auto">
+            <PopoverContent className="w-2/3 m-auto">
                 
                 <Card >
                     <CardHeader>
@@ -172,7 +172,7 @@ export default function Card_({userId, username, email, admin, public_id}) {
                         </center>
                     </CardHeader>
                     <CardContent>
-                        <center><p className="text-blue-500 m-2">{profile.profession}</p></center>
+                        <center><p className="text-blue-500 m-2 italic">{profile.profession}</p></center>
                         <p className="m-2 p-1 border border-emerald-600 rounded">Name: {username || "--"}</p>
                         <p className="m-2 p-1 border rounded">Guardian: {profile.guardian || "--"}</p>
                         <p className="m-2 p-1 border rounded">Email: {email || "--"}</p>

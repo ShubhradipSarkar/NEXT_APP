@@ -23,7 +23,7 @@ export default function Card_msg(props) {
       </CardContent>
       <CardFooter className="flex justify-between">
         
-        <Button className="w-auto">Delete</Button>
+        <Button size="sm">Delete</Button>
       </CardFooter>
     </Card>
   )

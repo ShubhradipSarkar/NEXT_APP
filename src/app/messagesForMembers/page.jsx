@@ -28,18 +28,18 @@ function messagesForMembers() {
     }, []);
   return (
     <NextUIProvider>
-    <div>
+    <div >
         <Navbar_/>
-        <div>
+        <div className='m-3 w-1/3'>
         {loading ? (
           
             <center><div className='p-8 m-8'><Spinner label="Loading..." color="success" size='lg' className='m-8 p-8'/></div></center> 
           
            
             ) : (
-            <ul>
+            <ul className='m-2'>
                 {Messages.map((message) => (
-                    <center>
+                    <center className='m-2'>
                     <Card_msg name={message.name} mobile={message.mobile} subject={message.subject} message={message.message} className='m-3'/>
                     </center>
                 // <li key={message._id}>{message.name}</li>

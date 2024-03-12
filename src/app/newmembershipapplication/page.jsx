@@ -31,7 +31,7 @@ function page() {
         <NextUIProvider>
         <div>
             <Navbar_/>
-            <div>
+            <div className='m-2'>
                 <center><div className='text-4xl m-2 text-sky-500'>New Applications</div></center>
                 {isloading ? (
                     
