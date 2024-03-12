@@ -2,10 +2,12 @@ import { connect } from "@/DBConfig/DBConfig";
 // import Gallery from "@/models/photoGalleryModel";
 import { NextRequest, NextResponse } from "next/server";
 import History from "@/models/historyModel";
-
+import { getServerSession } from "next-auth/next"
+// import  authOptions  from "@/app/auth/[...nextauth]";
 connect()
 
-export async function POST(request: NextRequest){
+export async function POST(request: NextRequest, response: NextResponse){
+    // const session = await getServerSession(request, response, authOptions)
     try {
         const reqBody = await request.json()
         const {description, photo_url, title} = reqBody
@@ -30,6 +32,7 @@ export async function POST(request: NextRequest){
 }
 
 export async function GET(request: NextRequest) {
+
     try {
         const Post = await History.find({}).select("-description");
         //console.log(member);

@@ -81,6 +81,8 @@ import { Skeleton } from "@/components/ui/skeleton"
 import {NextUIProvider} from "@nextui-org/react";
 import {Spinner} from "@nextui-org/react";
 import PaginationControls from '@/components/PaginationControls';
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 function About({
     searchParams,
   }) {
@@ -111,6 +113,22 @@ function About({
         <NextUIProvider>
         <div className='min-h-screen'>
             <Navbar_/>
+            <div className="fixed top-4 right-4">
+                <Link href="/library_">
+                    <button style={{
+                        backgroundImage: 'linear-gradient(to right, #0205bd, #e605e2)',
+                        color: 'white',
+                        fontWeight: 'bold',
+                        padding: '0.75rem 1.5rem',
+                        borderRadius: '1 rem',
+                        border: 'none',
+                        cursor: 'pointer',
+                    }} className="rounded-full shadow-lg">
+                    Visit our Library
+                    </button>
+                </Link>
+            </div>
+            
                 <div className='min-h-screen'> 
                 {isloading ? (
                     
