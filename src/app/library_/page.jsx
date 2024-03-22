@@ -52,7 +52,7 @@ const data = library
   
 // }
 
-export const columns = [
+const columns = [
   // {
   //   id: "select",
   //   header: ({ table }) => (
