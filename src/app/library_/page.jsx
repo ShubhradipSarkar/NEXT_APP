@@ -114,14 +114,8 @@ export default function DataTableDemo() {
       const getBooks = async() => {
           try {
               const books = await axios.get("/api/users/library_");
-              //SetImgUrl(history.data.Post.photo_url[0]);
-              console.log(books);
-              //console.log(history.data.Post);
+              
               SetData(books.data.allBooks);
-              // const whoIsMe = await axios.get("/api/users/me");
-              // console.log(whoIsMe)
-              // setIsAdmin(whoIsMe.data.data.isAdmin);
-
           } catch (error) {
               console.log(error);
           } finally {
@@ -141,6 +135,7 @@ export default function DataTableDemo() {
           title: "Book added to library",
           description: `a new book added`,
       })
+      SetData(prev => [...prev, {author: author, book: name, amount: unit,}])
       SetName("");
       SetAuthor("");
       SetUnit("");
