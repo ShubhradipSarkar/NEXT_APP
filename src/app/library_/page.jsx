@@ -42,17 +42,17 @@ import {
 import Navbar_ from "@/components/Navbar"
 import Footer_ from "@/components/Footer"
 import library from "./library.json"
-const data: any = library
+const data = library
 
-export type Payment = {
+// export type Payment = {
   
-  amount: string
-  author: string
-  book: string
+//   amount: string
+//   author: string
+//   book: string
   
-}
+// }
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns = [
   // {
   //   id: "select",
   //   header: ({ table }) => (
@@ -158,12 +158,12 @@ export const columns: ColumnDef<Payment>[] = [
 ]
 
 export default function DataTableDemo() {
-  const [sorting, setSorting] = React.useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+  const [sorting, setSorting] = React.useState([])
+  const [columnFilters, setColumnFilters] = React.useState(
     []
   )
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
+    React.useState({})
   const [rowSelection, setRowSelection] = React.useState({})
 
   const table = useReactTable({
@@ -193,7 +193,7 @@ export default function DataTableDemo() {
       <div className="flex items-center py-4">
         <Input
           placeholder="Search Book Names..."
-          value={(table.getColumn("book")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("book")?.getFilterValue()) ?? ""}
           onChange={(event) =>
             table.getColumn("book")?.setFilterValue(event.target.value)
           }
