@@ -42,39 +42,13 @@ import {
 import Navbar_ from "@/components/Navbar"
 import Footer_ from "@/components/Footer"
 import library from "./library.json"
-const data = library
-
-// export type Payment = {
-  
-//   amount: string
-//   author: string
-//   book: string
-  
-// }
+import {useEffect} from 'react';
+import { useSession } from "next-auth/react"
+import axios from "axios"
+import { useToast } from "@/components/ui/use-toast"
 
 const columns = [
-  // {
-  //   id: "select",
-  //   header: ({ table }) => (
-  //     <Checkbox
-  //       checked={
-  //         table.getIsAllPageRowsSelected() ||
-  //         (table.getIsSomePageRowsSelected() && "indeterminate")
-  //       }
-  //       onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-  //       aria-label="Select all"
-  //     />
-  //   ),
-  //   cell: ({ row }) => (
-  //     <Checkbox
-  //       checked={row.getIsSelected()}
-  //       onCheckedChange={(value) => row.toggleSelected(!!value)}
-  //       aria-label="Select row"
-  //     />
-  //   ),
-  //   enableSorting: false,
-  //   enableHiding: false,
-  // },
+
   {
     accessorKey: "author",
     header: "Author",
@@ -89,83 +63,34 @@ const columns = [
       <div className="capitalize">{row.getValue("book")}</div>
     ),
   },
-  // {
-  //   accessorKey: "status",
-  //   header: "Status",
-  //   cell: ({ row }) => (
-  //     <div className="capitalize">{row.getValue("status")}</div>
-  //   ),
-  // },
-  // {
-  //   accessorKey: "email",
-  //   header: ({ column }) => {
-  //     return (
-  //       <Button
-  //         variant="ghost"
-  //         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-  //       >
-  //         Email
-  //         <CaretSortIcon className="ml-2 h-4 w-4" />
-  //       </Button>
-  //     )
-  //   },
-  //   cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-  // },
+
   {
     accessorKey: "amount",
     header: () => <div className="text-right">Amount</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"))
 
-      // // Format the amount as a dollar amount
-      // const formatted = new Intl.NumberFormat("en-US", {
-      //   style: "currency",
-      //   currency: "USD",
-      // }).format(amount)
-
       return <div className="text-right font-medium">{amount}</div>
     },
   },
-  // {
-  //   id: "actions",
-  //   enableHiding: false,
-  //   cell: ({ row }) => {
-  //     const payment = row.original
-
-  //     return (
-  //       <DropdownMenu>
-  //         <DropdownMenuTrigger asChild>
-  //           <Button variant="ghost" className="h-8 w-8 p-0">
-  //             <span className="sr-only">Open menu</span>
-  //             <DotsHorizontalIcon className="h-4 w-4" />
-  //           </Button>
-  //         </DropdownMenuTrigger>
-  //         <DropdownMenuContent align="end">
-  //           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-  //           <DropdownMenuItem
-  //             onClick={() => navigator.clipboard.writeText(payment.id)}
-  //           >
-  //             Copy payment ID
-  //           </DropdownMenuItem>
-  //           <DropdownMenuSeparator />
-  //           <DropdownMenuItem>View customer</DropdownMenuItem>
-  //           <DropdownMenuItem>View payment details</DropdownMenuItem>
-  //         </DropdownMenuContent>
-  //       </DropdownMenu>
-  //     )
-  //   },
-  // },
+  
 ]
 
 export default function DataTableDemo() {
+  const { toast } = useToast()
   const [sorting, setSorting] = React.useState([])
   const [columnFilters, setColumnFilters] = React.useState(
     []
   )
+  const [name, SetName] = React.useState("");
+  const [author, SetAuthor] = React.useState("");
+  const [unit, SetUnit] = React.useState("");
+  const [data, SetData] = React.useState([]);
   const [columnVisibility, setColumnVisibility] =
     React.useState({})
   const [rowSelection, setRowSelection] = React.useState({})
-
+  const { data: session } = useSession();
+  //console.log(session);
   const table = useReactTable({
     data,
     columns,
@@ -185,11 +110,65 @@ export default function DataTableDemo() {
     },
   })
 
+  useEffect(() => {
+      const getBooks = async() => {
+          try {
+              const books = await axios.get("/api/users/library_");
+              //SetImgUrl(history.data.Post.photo_url[0]);
+              console.log(books);
+              //console.log(history.data.Post);
+              SetData(books.data.allBooks);
+              // const whoIsMe = await axios.get("/api/users/me");
+              // console.log(whoIsMe)
+              // setIsAdmin(whoIsMe.data.data.isAdmin);
+
+          } catch (error) {
+              console.log(error);
+          } finally {
+              //setLoading(false);
+          }
+      }
+      getBooks();
+  }, []);
+  const AddBookToLibrary = async() => {
+    try{
+      const addBook = await axios.post("/api/users/library_",{
+        author: author,
+        book: name,
+        amount: unit,
+      });
+      toast({
+          title: "Book added to library",
+          description: `a new book added`,
+      })
+      SetName("");
+      SetAuthor("");
+      SetUnit("");
+    }
+    catch(error){
+      toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "There was a problem and book could not be published.",
+          
+      })
+      console.log(error);
+    }
+
+  }
+
   return (
     <div>
       <Navbar_/>
-      <div className="m-8">
-
+      {session?.user?.isAdmin && <div className="w-80 m-3"> <p className="text-2xl text-white flex">Add Book in Library <p className="text-sm text-blue-500">(admin only)</p>  </p> 
+      <div className="my-1.5">Book Name <input type="text" className="w-80 rounded" value={name} onChange={(e)=>{SetName(e.target.value)}}/></div>
+      <div className="my-1.5">Author <input type="text" className="w-80 rounded" value={author} onChange={(e)=>{SetAuthor(e.target.value)}}/></div>
+      <div className="my-1.5">Units/Units <input type="text" className="w-80 rounded" value={unit} onChange={(e)=>{SetUnit(e.target.value)}}/></div>
+      
+      <Button size="sm" className="m-2" onClick={AddBookToLibrary}>Add Book</Button>
+      </div> }
+      <div className="m-3">
+      
       <div className="flex items-center py-4">
         <Input
           placeholder="Search Book Names..."
