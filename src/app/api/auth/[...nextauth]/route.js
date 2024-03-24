@@ -23,7 +23,7 @@ async function login(credentials){
         throw new Error("hat bsdk")
     }
 }
-const authOptions = {
+export const authOptions = {
     pages:{
         signIn: "/login"
     },

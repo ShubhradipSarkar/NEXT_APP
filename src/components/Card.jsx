@@ -38,6 +38,7 @@ export default function Card_({userId, username, email, admin, public_id}) {
     const myId = session?.user.id;
     const isadmin = session?.user.isAdmin;
     const [profile, setprofile] = useState([]);
+    const [img, setImg] = useState(`${public_id}`);
     const { toast } = useToast()
     
 
@@ -122,18 +123,19 @@ export default function Card_({userId, username, email, admin, public_id}) {
                 _id: userId,
                 profile_picture: result.info.url,
             })
+            setImg(result.info.url);
         } catch (error) {
             console.log("error uploading image", error);
         }
         
     }
     return (
-        <Card className="m-3 md:w-[200px]">
+        <Card className="m-3 w-80">
             {admin ? (<p className="p-1 italic text-bold">Admin</p>):(<p className="p-4 text-yellow-500 text-bold">   </p>)}
             <center>
                 
                 <CldImage
-                    src={public_id}
+                    src={img}
                     width="150"
                     height="150"
                     crop="fill"
@@ -142,18 +144,18 @@ export default function Card_({userId, username, email, admin, public_id}) {
             
             {/* <CldImage src={result.public_id} width={result.width} height={result.height} alt="" /> */}
             <CardHeader>
-            {(myId===userId) && <CldUploadButton
-                options={{ multiple: true }}
-                uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}
-                onUpload={handelImageUpload}
-            >
-                <span>
-                <Button variant="bluish" size="sm">Change Image</Button>
-                </span>
-            </CldUploadButton>}
-            <CardTitle>{username}</CardTitle>
-            <CardDescription>{email}</CardDescription>
-        </CardHeader>
+                {(myId===userId) && <CldUploadButton
+                    options={{ multiple: true }}
+                    uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}
+                    onUpload={handelImageUpload}
+                >
+                    <span>
+                    <Button variant="bluish" size="sm">Change Image</Button>
+                    </span>
+                </CldUploadButton>}
+                <CardTitle>{username}</CardTitle>
+                <CardDescription>{email}</CardDescription>
+            </CardHeader>
             </center>
         
         <center>
@@ -187,8 +189,8 @@ export default function Card_({userId, username, email, admin, public_id}) {
             </Popover>
                 
                 
-            {isadmin && !admin && <Button variant="default" size="default" onClick={makeAdmin}>Appoint Admin </Button>}
-            {isadmin && admin && <Button variant="default" size="default" onClick={removeAdmin}>Remove Admin </Button>}
+            {isadmin && !admin && <Button variant="default" size="default" onClick={makeAdmin}>Appoint as Admin </Button>}
+            {isadmin && admin && <Button variant="default" size="default" onClick={removeAdmin}>Remove Adminship </Button>}
             </center>
             
         </CardFooter>

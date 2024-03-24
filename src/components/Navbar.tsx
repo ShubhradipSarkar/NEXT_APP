@@ -61,9 +61,9 @@ export default function Navbar_() {
                                 <div className="flex items-center justify-center">
                                     <div className="px-2">
                                        <Image
-                                            src="/LOGO.png"
+                                            src="/LOGO_001.png"
                                             width={80}
-                                            height={80}
+                                            height={90}
                                             alt="kaka"
                                         />
                                     </div>
@@ -134,7 +134,7 @@ export default function Navbar_() {
                                 {!session?.user?.isMember && <JoinClubButton/>}
                                 <PhotoButton/>
                                 <ContactButton/>
-                                {session?.user?.isMember && <MessageButton/>}
+                                {session?.user?.isAdmin && <MessageButton/>}
                                 {session? (<Button variant="admin" onClick={()=>{signOut()}}>Logout</Button>):(<Button variant="admin" ><Link href="/login">Login</Link></Button>)}
                                 
                             </div>
