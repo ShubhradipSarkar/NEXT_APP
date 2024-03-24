@@ -130,6 +130,7 @@ export default function Card_({userId, username, email, admin, public_id}) {
         
     }
     return (
+        
         <Card className="m-3 w-80">
             {admin ? (<p className="p-1 italic text-bold">Admin</p>):(<p className="p-4 text-yellow-500 text-bold">   </p>)}
             <center>
