@@ -136,12 +136,19 @@ export default function Card_({userId, username, email, admin, public_id}) {
             <center>
                 
                 <div style={{position: 'relative'}}>
-                <CldImage
-                    src={img}
-                    width="150"
-                    height="150"
-                    crop="fill"
-                />
+                    <div style={{boxSizing:'border-box', width:'170', height:'170', borderRadius: '25px'}}>
+                        <CldImage
+                            src={img}
+                            width="170"
+                            height="170"
+                            crop="fill"
+                            loading="lazy"
+                            //overlays={overlays}
+                            style={{borderRadius: '100%'}}
+                            className="rounded-lg"
+                        />
+                    </div>
+                
                 {(myId===userId) && <CldUploadButton
                         options={{ multiple: true }}
                         uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}

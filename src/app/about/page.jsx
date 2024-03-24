@@ -113,9 +113,10 @@ function About({
         <NextUIProvider>
         <div className='min-h-screen'>
             <Navbar_/>
-            <div className="fixed top-4 right-4">
+            <div className="fixed top-4 right-0">
                 <Link href="/library_">
                     <button style={{
+                        position: 'absolute',
                         backgroundImage: 'linear-gradient(to right, #0205bd, #e605e2)',
                         color: 'white',
                         fontWeight: 'bold',
@@ -123,8 +124,9 @@ function About({
                         borderRadius: '1 rem',
                         border: 'none',
                         cursor: 'pointer',
+                        zIndex: '2',
                     }} className="rounded-full shadow-lg">
-                    Visit our Library
+                    Library
                     </button>
                 </Link>
             </div>
