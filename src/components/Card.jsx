@@ -130,30 +130,34 @@ export default function Card_({userId, username, email, admin, public_id}) {
         
     }
     return (
-        
+
         <Card className="m-3 w-80">
-            {admin ? (<p className="p-1 italic text-bold">Admin</p>):(<p className="p-4 text-yellow-500 text-bold">   </p>)}
+            {admin ? (<p style={{color: '#FFD700'}} className="p-1 italic text-yellow-500 text-bold">Admin</p>):(<p className="p-4 text-yellow-500 text-bold">   </p>)}
             <center>
                 
+                <div style={{position: 'relative'}}>
                 <CldImage
                     src={img}
                     width="150"
                     height="150"
                     crop="fill"
                 />
-            
+                {(myId===userId) && <CldUploadButton
+                        options={{ multiple: true }}
+                        uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}
+                        onUpload={handelImageUpload}
+                        style={{position: 'absolute', top: '80%', left: '65%'}}
+                    >
+                        
+                        <Image src="/pen.png" alt="Edit Image" width={40} height={40}></Image>
+                        
+                </CldUploadButton>}
+                </div>
+                
             
             {/* <CldImage src={result.public_id} width={result.width} height={result.height} alt="" /> */}
             <CardHeader>
-                {(myId===userId) && <CldUploadButton
-                    options={{ multiple: true }}
-                    uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}
-                    onUpload={handelImageUpload}
-                >
-                    <span>
-                    <Button variant="bluish" size="sm">Change Image</Button>
-                    </span>
-                </CldUploadButton>}
+                
                 <CardTitle>{username}</CardTitle>
                 <CardDescription>{email}</CardDescription>
             </CardHeader>
