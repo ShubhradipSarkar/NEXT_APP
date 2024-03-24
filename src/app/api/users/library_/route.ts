@@ -8,7 +8,7 @@ import { getServerSession } from "next-auth/next"
 // import  {authOptions}  from "@/app/api/auth/[...nextauth]"
 import { authOptions } from "../../auth/[...nextauth]/route";
 // import { AuthOptions } from "next-auth";
-import { NextApiRequest, NextApiResponse } from "next";
+// import { NextApiRequest, NextApiResponse } from "next";
 connect()
 
 export async function POST(request: NextRequest, response: NextResponse){
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest, response: NextResponse){
 }
 
 
-export async function GET(request: NextApiRequest, response: NextApiResponse) {
+export async function GET(request: NextRequest, response: NextResponse) {
     // const session = await getServerSession(request, response, authOptions);
     // const token = await getToken({ request })
     // console.log(token);
