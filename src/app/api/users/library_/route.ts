@@ -2,11 +2,11 @@ import { connect } from "@/DBConfig/DBConfig";
 // import Gallery from "@/models/photoGalleryModel";
 import { NextRequest, NextResponse } from "next/server";
 import Library from "@/models/LibraryModel";
-import { LibraryBig } from "lucide-react";
-import { getToken } from "next-auth/jwt"
-import { getServerSession } from "next-auth/next"
+//import { LibraryBig } from "lucide-react";
+//import { getToken } from "next-auth/jwt"
+//import { getServerSession } from "next-auth/next"
 // import  {authOptions}  from "@/app/api/auth/[...nextauth]"
-import { authOptions } from "../../auth/[...nextauth]/route";
+//import { authOptions } from "../../auth/[...nextauth]/route";
 // import { AuthOptions } from "next-auth";
 // import { NextApiRequest, NextApiResponse } from "next";
 connect()
