@@ -61,7 +61,7 @@ export default function Navbar_() {
                                 <div className="flex items-center justify-center">
                                     <div className="px-2">
                                        <Image
-                                            src="/LOGO_001.png"
+                                            src="/Logo_001.png"
                                             width={80}
                                             height={90}
                                             alt="kaka"
