@@ -46,20 +46,6 @@ export default function Card_({userId, username, email, admin, public_id}) {
         public_id='/image_profile.png'
     }
 
-    //console.log(imageUrlToShow)
-    // useEffect(() => {
-    //     const findMe = async() => {
-    //         try {
-    //             const whoIsMe = await axios.get("/api/users/me");
-    //             setmyId(whoIsMe.data.data._id)
-    //             setisadmin(whoIsMe.data.data.isAdmin);
-                
-    //         } catch (error) {
-                
-    //         }
-    //     }
-    //     findMe();
-    // }, []);
     const readProfile = async() => {
         try {
             const profileData = await axios.put("/api/users/me",{

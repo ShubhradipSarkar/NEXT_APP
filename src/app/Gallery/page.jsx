@@ -166,7 +166,8 @@ import {Spinner} from "@nextui-org/react";
 import { useToast } from "@/components/ui/use-toast"
 import { useSession } from "next-auth/react";
 import PaginationControls from '@/components/PaginationControls';
-
+import StackCard from "@/components/StackCard";
+import YearGallery from "@/components/YearGallery";
 function Gallery({
     searchParams,
   }) {
@@ -259,6 +260,23 @@ function Gallery({
         <div>
             <Navbar_/>
             <div className='min-h-screen'>
+                
+                <div className='flex flex-row flex-wrap m-3'>
+                    <YearGallery/>
+                    <YearGallery/>
+                    <YearGallery/>
+                    <YearGallery/>
+                </div>
+                {/* <div className='flex flex-row flex-wrap m-5'>
+                    
+                    <StackCard/>
+                    
+                    
+                </div> */}
+            
+                
+                
+            
             {session?.user?.isAdmin && 
             <div>
             <center>
@@ -307,7 +325,8 @@ function Gallery({
             /></center>
             
             <Footer_/>
-        </div>
+            </div>
+        
         </NextUIProvider>
     )
 }
