@@ -19,9 +19,10 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        bluish: " bg-blue-600 text-accent-foreground shadow-sm hover:bg-blue-700 hover:text-accent-foreground",
-        prime: " bg-amber-500 text-accent-foreground shadow-sm hover:bg-amber-700 hover:text-accent-foreground",
-        admin: " bg-emerald-700 text-accent-foreground shadow-sm hover:bg-emerald-900 hover:text-accent-foreground",
+        bluish: " bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br text-accent-foreground shadow-sm hover:bg-blue-700 hover:text-accent-foreground",
+        prime: " bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl text-accent-foreground shadow-sm hover:bg-amber-700 hover:text-accent-foreground",
+        admin: " bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l text-accent-foreground shadow-sm hover:bg-emerald-900 hover:text-accent-foreground",
+        trans: " bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br text-accent-foreground shadow-sm hover:bg-blue-700 hover:text-accent-foreground",
       },
       size: {
         default: "h-9 px-4 py-2 ml-4",

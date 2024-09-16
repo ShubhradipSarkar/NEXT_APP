@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/models/userModel.js", "src/app/api/users/normal/page.jsx", "src/app/Chai/page.tsx", "src/components/Navbar.jsx", "src/app/messagesForMembers/page.jsx", "src/components/Card_msg.jsx", "src/app/about/page.jsx", "src/components/Card.jsx", "src/app/joinClub/page.jsx", "src/app/api/users/members/route.js", "src/app/newmembershipapplication/page.jsx", "src/app/history/page.jsx", "src/app/history/[id]/page.jsx", "src/app/category/page.jsx", "src/app/category/[id]/page.jsx", "src/app/present/page.jsx", "src/app/api/auth/[...nextauth]/route.js", "src/app/library_/page.jsx", "src/app/api/users/library_/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/models/userModel.js", "src/app/api/users/normal/page.jsx", "src/app/Chai/page.tsx", "src/components/Navbar.jsx", "src/app/messagesForMembers/page.jsx", "src/components/Card_msg.jsx", "src/app/about/page.jsx", "src/components/Card.jsx", "src/app/joinClub/page.jsx", "src/app/api/users/members/route.js", "src/app/newmembershipapplication/page.jsx", "src/app/history/page.jsx", "src/app/history/[id]/page.jsx", "src/app/category/page.jsx", "src/app/category/[id]/page.jsx", "src/app/present/page.jsx", "src/app/api/auth/[...nextauth]/route.js", "src/app/library_/page.jsx", "src/app/api/users/library_/route.js", "src/app/page.jsx"],
   "exclude": ["node_modules"]
 }

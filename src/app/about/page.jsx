@@ -1,160 +1,112 @@
-// "use client"
-// import React from 'react'
-// import Navbar_ from '@/components/Navbar'
-// import Footer_ from '@/components/Footer'
-// import Card_ from '@/components/Card'
-// import { useEffect, useState } from 'react'
-// import axios from 'axios'
-// import { Skeleton } from "@/components/ui/skeleton"
-// // import Loader from "react-loader-spinner"; 
-// // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"; 
-// import {NextUIProvider} from "@nextui-org/react";
-// import {Spinner} from "@nextui-org/react";
-// //import PaginationControls from '@/components/PaginationControls'
+"use client";
+import Image from "next/image";
+import React from "react";
+import Navbar_ from "@/components/Navbar";
+import Footer_ from "@/components/Footer";
+import Home from './mapcomponents/main'
+import Link from "next/link";
+import { NextUIProvider } from "@nextui-org/react";
 
-// function About({
-//     searchParams,
-//   }) {
-//     const [Data, setData] = useState([]);
-//     const [isloading, SetIsloading] = useState(true);
-//     // const page = searchParams['page'] ?? '1'
-//     // const per_page = searchParams['per_page'] ?? '5'
-    
-//     // const start = (Number(page) - 1) * Number(per_page) // 0, 5, 10 ...
-//     // const end = start + Number(per_page) // 5, 10, 15 ...
+function About() {
+  return (
+    <NextUIProvider>
+      <div className="flex flex-col justify-center items-center min-h-screen">
+        <Navbar_ />
 
-    
-
-//     useEffect(() => {
-        
-
-//         fetch('/api/users/members')
-//         .then((res) => res.json())
-//         .then((data) => {
-//             console.log(data);
-//             setData(data)
-//             SetIsloading(false);
-//             //const entries = Data.member.slice(start, end)
-//         })
-//     }, []);
-//     return (
-//         <NextUIProvider>
-//         <div className='min-h-screen'>
-//             <Navbar_/>
-//                 <div className='min-h-screen'> 
-//                 {isloading ? (
-                    
-//                     <center><div className='p-8 m-8'><Spinner label="Loading..." color="success" size='lg' className='m-8 p-8'/></div></center> 
-                    
-                    
-//                         ) : (
-//                             <div className='items-center justify-center flex flex-row flex-wrap  m-3'>
-//                                 {entries.map((data)=>(
-//                                     <Card_ userId={data._id } username={data.username} email={data.email} admin={data.isAdmin} key={data.email} public_id={data.profile_picture} className='m-3 w-auto'/>
-//                                 ))}
-                                
-//                             </div>
-//                         )}
-//                 </div>
-//                 <PaginationControls
-//                     hasNextPage={end < Data.member.length}
-//                     hasPrevPage={start > 0}
-//                 />
-//             <Footer_/>
-//         </div>
-//         </NextUIProvider>
-//     )
-// }
-
-// export default About
-
-"use client"
-import React from 'react'
-import Navbar_ from '@/components/Navbar'
-import Footer_ from '@/components/Footer'
-import Card_ from '@/components/Card'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { Skeleton } from "@/components/ui/skeleton"
-// import Loader from "react-loader-spinner"; 
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"; 
-import {NextUIProvider} from "@nextui-org/react";
-import {Spinner} from "@nextui-org/react";
-import PaginationControls from '@/components/PaginationControls';
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-function About({
-    searchParams,
-  }) {
-    const [Data, setData] = useState([]);
-    const [isloading, SetIsloading] = useState(true);
-    const page = searchParams['page'] ?? '1'
-    const per_page = searchParams['per_page'] ?? '10'
-
-    // mocked, skipped and limited in the real app
-    const start = (Number(page) - 1) * Number(per_page) // 0, 5, 10 ...
-    const end = start + Number(per_page) // 5, 10, 15 ...
-
-    useEffect(() => {
-        
-
-        fetch('/api/users/members')
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data);
-            setData(data.member)
-            SetIsloading(false);
-        })
-    }, []);
-
-    const entries = Data.slice(start, end);
-
-    return (
-        <NextUIProvider>
-        <div className='min-h-screen'>
-            <Navbar_/>
-            <div className="fixed top-4 right-0">
-                <Link href="/library_">
-                    <button style={{
-                        position: 'absolute',
-                        backgroundImage: 'linear-gradient(to right, #0205bd, #e605e2)',
-                        color: 'white',
-                        fontWeight: 'bold',
-                        padding: '0.75rem 1.5rem',
-                        borderRadius: '1 rem',
-                        border: 'none',
-                        cursor: 'pointer',
-                        zIndex: '2',
-                    }} className="rounded-full shadow-lg">
-                    Library
-                    </button>
-                </Link>
-            </div>
-            
-                <div className='min-h-screen'> 
-                {isloading ? (
-                    
-                    <center><div className='p-8 m-8'><Spinner label="Loading..." color="success" size='lg' className='m-8 p-8'/></div></center> 
-                    
-                    
-                        ) : (
-                            <div className='items-center justify-center flex flex-row flex-wrap  m-3'>
-                                {entries.map((data)=>(
-                                    <Card_ userId={data._id } username={data.username} email={data.email} admin={data.isAdmin} key={data.email} public_id={data.profile_picture} className='m-3 w-auto'/>
-                                ))}
-                                
-                            </div>
-                        )}
-                </div>
-                <center><PaginationControls
-                urlfor="about"
-                hasNextPage={end < Data.length}
-                hasPrevPage={start > 0}
-            /></center>
-            <Footer_/>
+        <div className="m-2 rounded-lg border border-cyan-500 ">
+          <Image
+            src="/sscHome2.jpeg"
+            height={500}
+            width={500}
+            alt="HomePicture"
+            className="rounded-lg p-2 "
+            style={{ borderRadius: "15px" }}
+          />
         </div>
-        </NextUIProvider>
-    )
+
+        <div className="flex flex-row flex-wrap justify-center items-center w-full m-2 p-2 gap-2">
+          {/* Meet our team */}
+          <div
+            className="flex hover:scale-125 cursor-pointer flex-col bg-slate-500 rounded-lg hover:scale-110 transition delay-150 duration-300 ease-in-out items-center justify-center"
+            style={{ height: "350px", width: "350px" }}
+          >
+            <Link href='/'>
+            <Image
+              src="/sscTeam.jpeg"
+              height={350}
+              width={350}
+              alt="team"
+              style={{ borderRadius: "15px" }}
+            />
+            <div>Meet our wonderful team</div>
+            </Link>
+          </div>
+
+          {/* World Environment Day Ralley */}
+          <div
+            className="flex hover:scale-125 cursor-pointer flex-col bg-slate-500 rounded-lg hover:scale-110 transition delay-150 duration-300 ease-in-out items-center justify-center"
+            style={{ height: "350px", width: "350px" }}
+          >
+            <Image
+              src="/Ralley.jpeg"
+              height={350}
+              width={350}
+              alt="ralley"
+              style={{ borderRadius: "15px" }}
+            />
+            <div>World Environment Day Ralley</div>
+          </div>
+
+          {/* Introduction to Universe Program */}
+          <div
+            className="flex hover:scale-125 cursor-pointer flex-col bg-slate-500 rounded-lg hover:scale-110 transition delay-150 duration-300 ease-in-out items-center justify-center"
+            style={{ height: "350px", width: "350px" }}
+          >
+            <Image
+              src="/Universe.jpeg"
+              height={350}
+              width={350}
+              alt="universe"
+              style={{ borderRadius: "15px" }}
+            />
+            <div>Introduction to Universe Program</div>
+          </div>
+
+          <div
+            className="flex hover:scale-125 cursor-pointer flex-col bg-slate-500 rounded-lg hover:scale-110 transition delay-150 duration-300 ease-in-out items-center justify-center"
+            style={{ height: "350px", width: "350px" }}
+          >
+            <Image
+              src="/School.jpeg"
+              height={350}
+              width={350}
+              alt="school programs"
+              style={{ borderRadius: "15px" }}
+            />
+            <div>Programs in Schools</div>
+          </div>
+
+          <div
+            className="flex hover:scale-125 cursor-pointer flex-col bg-slate-500 rounded-lg hover:scale-110 transition delay-150 duration-300 ease-in-out items-center justify-center"
+            style={{ height: "350px", width: "350px" }}
+          >
+            <Image
+              src="/sikshac.jpg"
+              height={350}
+              width={350}
+              alt="educational convention"
+              style={{ borderRadius: "15px" }}
+            />
+            <div>Educational Convention 2022</div>
+          </div>
+        </div>
+        <div>
+        <Home />
+        </div>
+      </div>
+      <Footer_ />
+    </NextUIProvider>
+  );
 }
 
-export default About
+export default About;

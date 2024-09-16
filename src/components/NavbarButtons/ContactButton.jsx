@@ -7,7 +7,7 @@ function ContactButton() {
     return (
         <div className='px-1 '>
             <Link href="/contact">
-            <Button variant='bluish' >
+            <Button variant='trans' >
                     <div className='text-md m-2'>
                         যোগাযোগ <br />CONTACT
                     </div>
