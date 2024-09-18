@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1 className='m-2'>Santipur Science Club Location</h1>
+      
       <Map center={center} zoom={zoom} markerPosition={markerPosition} />
     </div>
   );

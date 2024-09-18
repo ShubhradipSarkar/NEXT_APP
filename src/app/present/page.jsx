@@ -151,10 +151,11 @@ import {
             </center>
             }
             
-            <center><p className='text-3xl m-1 italic'>Current Activities</p></center>
-            <div className='items-center justify-center flex flex-row flex-wrap min-h-screen m-3'>
-            {loading ? (<center><div className='p-8 m-8'><Spinner label="Loading..." color="success" size='lg' className='m-8 p-8'/></div></center> ) : (
-                <div className='flex flex-row flex-wrap'>
+            <center><p className='text-3xl m-1 mt-2 italic'>আমাদের নিয়মিত কর্মসূচি সমূহ</p></center>
+            <div className=' flex flex-row items-center justify-center flex-wrap min-h-screen m-3'>
+            {loading ? (
+            <div className='p-8 m-8'><Spinner label="Loading..." color="success" size='lg' className='m-8 p-8'/></div> ) : (
+                <div className='flex flex-row flex-wrap items-center justify-center'>
                     {entries.map((hist, key)=>(
                         
                         <Card className="m-3 md:w-[250px]">
