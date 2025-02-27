@@ -31,7 +31,7 @@ function About({ searchParams }) {
       });
   }, []);
 
-  // const entries = Data.slice(start, end);
+  const entries = Data;
 
   return (
     <NextUIProvider>
